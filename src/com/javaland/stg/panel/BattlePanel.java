@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.javaland.stg.common.Monster;
+import com.javaland.stg.controller.CharacterController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 황성연 담당 패널 */
@@ -43,6 +44,7 @@ public class BattlePanel extends JPanel {
 	private Monster writhingMass = new Monster("writhingMass"); // 3-2
 	private Monster nemesis = new Monster("nemesis"); // 3-3
 	private Monster theGuardian = new Monster("theGuardian"); // 3-boss
+	private Monster nowEnemy;
 	
 	private CharacterDTO character;
 
@@ -144,6 +146,9 @@ public class BattlePanel extends JPanel {
 //		character = new CharacterDTO();
 //		characterInforefresh();
 //		startBattle(1,2);
+		
+		CharacterController ct = new CharacterController();
+		System.out.println(ct.searchPlayerById("user01"));
 	}
 
 	public void eventStart() {
@@ -151,6 +156,7 @@ public class BattlePanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				character.attackMonster(nowEnemy);
 			}
 		});
 
@@ -187,6 +193,7 @@ public class BattlePanel extends JPanel {
 		enemyName.setBounds(monster.getImgX(), monster.getImgY() - 80, monster.getImg().getWidth(null), 30);
 		enemyHpLabel.setText(monster.getHp() + "/" + monster.getMaxHp());
 		enemyHpLabel.setBounds(monster.getImgX(), monster.getImgY() - 40, monster.getImg().getWidth(null), 30);
+		nowEnemy = monster;
 	}
 
 	public void characterInforefresh() {
