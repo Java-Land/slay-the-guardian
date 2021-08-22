@@ -69,6 +69,7 @@ public class TownPanel extends JPanel{
 		townPanel1.setOpaque(false);
 		
 		/* 이동 버튼 */
+		/* 푸쉬 */
 		nextButton = new JButton();
 		nextButton.setBounds(1190, 450, 348, 182);
 		nextButton.setBorderPainted(false);
