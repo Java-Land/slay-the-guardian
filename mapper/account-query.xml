@@ -38,6 +38,13 @@
 		  FROM PLAYER A
 		 WHERE A.USER_ID = ?
 	</entry>
+	
+	<entry key="selectSameUserid">
+		SELECT
+		       A.USER_ID
+		  FROM PLAYER A
+		 WHERE A.USER_ID = ?
+	</entry>
 </properties>
 
 

@@ -48,6 +48,23 @@ public class UserService {
 		
 		return result;
 	}
+	
+	public int selectSameID(UserDTO userDTO) {
+		Connection con = getConnection();
+		int result = 0;
+		
+		result = userDAO.selectSameId(con, userDTO);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
 
 	public int insertPlayerInfo(UserDTO userDTO) {
 		Connection con = getConnection();
