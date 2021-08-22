@@ -3,6 +3,8 @@ package com.javaland.stg.model.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.javaland.stg.common.Monster;
+
 public class CharacterDTO implements Serializable{
 	
 	/**
@@ -10,7 +12,7 @@ public class CharacterDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 5508771761130946917L;
 	
-	private String code;
+	private int code;
 	private String id;
 	private int hp;
 	private int maxHp;
@@ -28,7 +30,7 @@ public class CharacterDTO implements Serializable{
 		super();
 	}
 
-	public CharacterDTO(String code, String id, int hp, int maxHp, int sp, int dp, int gold, int exp, int level,
+	public CharacterDTO(int code, String id, int hp, int maxHp, int sp, int dp, int gold, int exp, int level,
 			Date playTime, String liveYN, String stage1ClearYN, String stage2ClearYN) {
 		super();
 		this.code = code;
@@ -46,11 +48,19 @@ public class CharacterDTO implements Serializable{
 		this.stage2ClearYN = stage2ClearYN;
 	}
 
-	public String getCode() {
+	public void attackMonster(Monster monster) {
+		if(this.sp - monster.getDp() > 0) {
+			monster.setHp(monster.getHp() - this.sp - monster.getDp());
+		} else {
+			
+		}
+	}
+	
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 
