@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-/* 이신희 담당 */
+/* 이신희담당 */
 public class StagePanel extends JPanel{
 	
 	Image backImg = new ImageIcon("image/StagePanelBackIMG.png").getImage();
