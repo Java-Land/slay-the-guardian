@@ -73,6 +73,32 @@ public class UserDAO {
 		}
 		return -2;							// DB 오류
 	}
+	
+	public int selectSameId(Connection con, UserDTO userDTO) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectSameUserid");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userDTO.getUserId());
+			
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				if (rset.getString(1).equals(userDTO.getUserId())) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return -2;
+	}
 
 	public int insertPlayerInfo(Connection con, UserDTO userDTO) {
 		PreparedStatement pstmt = null;
