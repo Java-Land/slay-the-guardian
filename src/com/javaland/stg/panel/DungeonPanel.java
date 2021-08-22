@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-/* 아무거나 */
+
 /* 이준한 담당 패널 */
 /* 푸쉬 시도 */
 public class DungeonPanel extends JPanel {
@@ -57,10 +57,6 @@ public class DungeonPanel extends JPanel {
 	private JButton bossMonster1Btn;
 
 	/* 몬스터 이름 */
-//	private JButton monster1TextBtn;
-//	private JButton monster2TextBtn;
-//	private JButton monster3TextBtn;
-//	private JButton bossMonster1TextBtn;
 	private JLabel monster1Textlb;
 	private JLabel monster2Textlb;
 	private JLabel monster3Textlb;
@@ -157,74 +153,6 @@ public class DungeonPanel extends JPanel {
 		this.add(monster3Btn);
 		this.add(bossMonster1Btn);
 		
-		
-		
-//		/* 던전 몬스터 1 텍스트 버튼부착 */
-//		monster1TextBtn = new JButton();
-//		monster1TextBtn.setIcon(monster1Text);
-//		monster1TextBtn.setBounds(89, 543, 247, 103);
-//		monster1TextBtn.setBorderPainted(false);
-//		monster1TextBtn.setContentAreaFilled(false);
-//		monster1TextBtn.setFocusPainted(false);
-//		dungeonPanel.add(monster1TextBtn);
-//
-//		/* 던전 몬스터 2 텍스트 버튼부착 */
-//		monster2TextBtn= new JButton();
-//		monster2TextBtn.setIcon(monster2Text);
-//		monster2TextBtn.setBounds(455, 543, 247, 103);
-//		monster2TextBtn.setBorderPainted(false);
-//		monster2TextBtn.setContentAreaFilled(false);
-//		monster2TextBtn.setFocusPainted(false);
-//		dungeonPanel.add(monster2TextBtn);
-//
-//		/* 던전 몬스터 3 텍스트 버튼부착 */
-//		monster3TextBtn= new JButton();
-//		monster3TextBtn.setIcon(monster3Text);
-//		monster3TextBtn.setBounds(869, 543, 247, 103);
-//		monster3TextBtn.setBorderPainted(false);
-//		monster3TextBtn.setContentAreaFilled(false);
-//		monster3TextBtn.setFocusPainted(false);
-//		dungeonPanel.add(monster3TextBtn);
-//
-//
-//		/* 보스 몬스터 1 텍스트 버튼부착 */
-//		bossMonster1TextBtn = new JButton();
-//		bossMonster1TextBtn.setIcon(bossMonster1Text);
-//		bossMonster1TextBtn.setBounds(1280, 543, 247, 103);
-//		bossMonster1TextBtn.setBorderPainted(false);
-//		bossMonster1TextBtn.setContentAreaFilled(false);
-//		bossMonster1TextBtn.setFocusPainted(false);
-//		dungeonPanel.add(bossMonster1TextBtn);
-
-
-//		/* 던전 몬스터 1 텍스트 부착 */
-//		JLabel monster1Textlb = new JLabel("image/monster1Text.png");
-//		monster1Textlb.setBounds(89, 543, 247, 103);
-//		monster1Textlb.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-//		monster1Textlb.setOpaque(true);
-//		monster1Textlb.setBackground(new Color(192, 192, 192, 150));
-//		
-//		/* 던전 몬스터 2 텍스트 부착 */
-//		JLabel monster2Textlb = new JLabel("image/monster2Text.png");
-//		monster1Textlb.setBounds(455, 543, 247, 103);
-//		monster1Textlb.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
-//		monster1Textlb.setOpaque(true);
-//		monster1Textlb.setBackground(new Color(192, 192, 192, 150));
-//		
-//		/* 던전 몬스터 3 텍스트 부착 */
-//		JLabel monster3Textlb = new JLabel("image/monster3Text.png");
-//		monster1Textlb.setBounds(869, 543, 547, 103);
-//		monster1Textlb.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
-//		monster1Textlb.setOpaque(true);
-//		monster1Textlb.setBackground(new Color(192, 192, 192, 150));
-//		
-//		/* 던전 보스 몬스터 1 텍스트 부착 */
-//		JLabel bossMonster1Textlb = new JLabel("image/bossMonster1text.png");
-//		bossMonster1Textlb.setBounds(1348, 543, 164, 103);
-//		bossMonster1Textlb.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
-//		bossMonster1Textlb.setOpaque(true);
-//		bossMonster1Textlb.setBackground(new Color(192, 192, 192, 150));
-
 	}
 
 	private void add(ImageIcon returnLogo2) {
@@ -237,15 +165,16 @@ public class DungeonPanel extends JPanel {
 
 	public void eventStart() {
 
-//		returnLogoBtn.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//
-//				returnLogoBtn.(2, 1);
-//
-//			}
-//		});
+		returnLogoBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				dungeonPanel.setVisible(false);
+				townPanel.setVisible(true);
+				
+			}
+		});
 		
 		monster1Btn.addActionListener(new ActionListener() {
 
