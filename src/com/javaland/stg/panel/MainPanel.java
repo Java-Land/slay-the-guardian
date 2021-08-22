@@ -344,7 +344,6 @@ public class MainPanel extends JPanel{
 				map.put("PW", pw);
 				
 				int loginResult = userController.loginSuccess(map);
-				int infoResult = userController.registInfo(map);
 				
 				if (loginResult == 1) {
 					JOptionPane.showMessageDialog(null, "로그인 성공");
@@ -473,6 +472,7 @@ public class MainPanel extends JPanel{
 					map.put("PW", pw);
 					
 					userController.registPlayer(map);
+					int infoResult = userController.registInfo(map);
 					
 					JOptionPane.showMessageDialog(null, "회원 가입 성공!");
 					
