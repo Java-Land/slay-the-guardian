@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -40,16 +41,17 @@ public class TownPanel extends JPanel{
 	private DungeonPanel dungeonPanel;
 	private BattlePanel battlePanel;
 	private AdminPanel adminPanel;
+	private StorePanel storePanel;
 	
 	private CharacterDTO character;
 	
 	private JPanel blockPanel;
 	private JPanel townPanel1;
-	private JPanel storePanel;
 	
 	private JLabel goldLabel;
 	private JLabel yesLabel;
 	private JLabel noLabel;
+	private JLabel characterHpLabel;
 	
 	private JButton nextButton;
 	private JButton restButton;
@@ -86,14 +88,13 @@ public class TownPanel extends JPanel{
 		restButton.setIcon(restImg);
 		townPanel1.add(restButton);
 		
-		/* 상점 패널 */
-		
-		storePanel = new JPanel();
-		storePanel.setBounds(0, 0, 1600, 900);
-		storePanel.setLayout(null);
-		storePanel.setOpaque(false);
-		storePanel.setVisible(false);
-		
+		/* 캐릭터 체력 라벨 */
+		characterHpLabel = new JLabel();
+		characterHpLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		characterHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
+		characterHpLabel.setBounds(555, 500, 100, 30);
+		characterHpLabel.setForeground(Color.RED);
+		townPanel1.add(characterHpLabel);
 		
 		/* 상점 버튼 */
 		storeButton = new JButton();
@@ -121,12 +122,13 @@ public class TownPanel extends JPanel{
 		goldLabel.setForeground(new Color(188, 191, 42));
 		townPanel1.add(goldLabel);
 		
-		/* block 패널 */
-		blockPanel = new JPanel();
-		blockPanel.setLayout(null);
-		blockPanel.setBounds(450, 200, 650, 500);
-		blockPanel.setVisible(false);
-		blockPanel.setBackground(Color.BLACK);
+//		/* block 패널 */
+//		blockPanel = new JPanel();
+//		blockPanel.setLayout(null);
+//		blockPanel.setBounds(450, 200, 650, 500);
+//		blockPanel.setVisible(false);
+//		blockPanel.setBackground(Color.BLACK);
+
 
 //		blockPanel.setOpaque(false);
 		
@@ -146,19 +148,13 @@ public class TownPanel extends JPanel{
 		noButton.setContentAreaFilled(false);
 		noButton.setFocusPainted(false);
 		noButton.setIcon(noImg);
-	
-		/* 상점 패널 */
-		storePanel = new JPanel();
-		storePanel.setLayout(null);
-		storePanel.setBounds(0, 0, 1600, 900);
-		storePanel.setVisible(false);
-		storePanel.setOpaque(false);
 		
-		this.add(blockPanel);
+//		this.add(blockPanel);
 		this.add(townPanel1);
-		this.add(storePanel);
 //		this.add(yesButton);
-	
+		
+		character = new CharacterDTO();
+		characterInforefresh();
 	}
 	
 	
@@ -196,7 +192,8 @@ public class TownPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				townPanel.setVisible(false);
+				stagePanel.setVisible(true);
 			}
 		});
 		
@@ -204,6 +201,7 @@ public class TownPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				/* 휴식 버튼 클릭 시 체력 회복 */
 				
 			}
 		});
@@ -212,7 +210,7 @@ public class TownPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				townPanel1.setVisible(false);
+				townPanel.setVisible(false);
 				storePanel.setVisible(true);
 //				storeImg = new ImageIcon("image/StorePanel.png").getImage();
 //				repaint();
@@ -224,12 +222,19 @@ public class TownPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				townPanel1.setVisible(false);
-				blockPanel.setVisible(true);
+				JOptionPane.showMessageDialog(null, "나가시겠습니까?");
+				
+//				townPanel1.setVisible(false);
+//				blockPanel.setVisible(true);
 //				blockPanel.add(yesButton);
 				
 			}
 		});
+	}
+	
+	public void characterInforefresh() {
+		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
+		goldLabel.setText(character.getGold() + "");
 	}
 	
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
@@ -250,13 +255,11 @@ public class TownPanel extends JPanel{
 	
 	@Override
 	public void paintComponent(Graphics g) {
-//		super.paintComponent(g);
+		super.paintComponent(g);
 		
-		g.drawImage(storeImg, 0, 0, storePanel);
 		g.drawImage(backImg, 0, 0, townPanel);
 		g.drawImage(characterImg, 445, 550, townPanel);
 		g.drawImage(infoImg, 0, 10, townPanel);
-//		g.drawImage(storeImg, 0, 0, storePanel);
 //		g.drawImage(blockImg, 250, 200, blockPanel);
 	}
 	
