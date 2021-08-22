@@ -143,12 +143,10 @@ public class BattlePanel extends JPanel {
 		enemyName.setForeground(Color.WHITE);
 		battlePanel.add(enemyName);
 		
-//		character = new CharacterDTO();
-//		characterInforefresh();
-//		startBattle(1,2);
+		character = new CharacterDTO();
+		characterInforefresh();
+		startBattle(1,2);
 		
-		CharacterController ct = new CharacterController();
-		System.out.println(ct.searchPlayerById("user01"));
 	}
 
 	public void eventStart() {
