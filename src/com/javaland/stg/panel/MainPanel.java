@@ -21,10 +21,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.javaland.stg.controller.UserController;
+import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김종현 담당 패널 */
 public class MainPanel extends JPanel{
 	
+	private CharacterDTO character = new CharacterDTO();
 	private UserController userController = new UserController();
 	
 	Image backImg = new ImageIcon("image/MainPanelBackIMG.png").getImage();
@@ -37,6 +39,13 @@ public class MainPanel extends JPanel{
 	ImageIcon registerImg = new ImageIcon("image/registerBtn.png");
 	ImageIcon confirmImg = new ImageIcon("image/confirm.png");
 	ImageIcon exitImg = new ImageIcon("image/exit.png");
+	ImageIcon registSuccessImg = new ImageIcon("image/registSuccess.png");
+	ImageIcon registFailNoPwdImg = new ImageIcon("image/registFail_noPwd.png");
+	ImageIcon registFailWrongPwdImg = new ImageIcon("image/registFail_wrongPwd.png");
+	ImageIcon loginSuccessImg = new ImageIcon("image/loginSuccess.png");
+	ImageIcon loginFailImg = new ImageIcon("image/loginFail.png");
+	ImageIcon okBtnImg = new ImageIcon("image/okBtn.png");
+	ImageIcon registFailDupIDImg = new ImageIcon("image/registFail_dupID.png");
 
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
@@ -58,6 +67,12 @@ public class MainPanel extends JPanel{
 	private JLabel pwImgLabel;
 	private JLabel pwImgLabel2;
 	private JLabel confirmPwImgLabel;
+	private JLabel loginSuccesslabel;
+	private JLabel loginFaillabel;
+	private JLabel registSuccesslabel;
+	private JLabel registFailNoPwdlabel;
+	private JLabel registFailWrongPwdlabel;
+	private JLabel registFailDupIdlabel;
 	private JTextField idField;
 	private JTextField idField2;
 	private JPasswordField pwField;
@@ -66,12 +81,17 @@ public class MainPanel extends JPanel{
 	
 	private JPanel loginPanel;
 	private JPanel registPanel;
+	private JPanel popUpPanel;
 	
 	private JButton loginBtn;
 	private JButton registerBtn;
 	private JButton registerBtn2;
 	private JButton exitBtn1;
 	private JButton exitBtn2;
+	private JButton registOkBtn;
+	private JButton okBtn;
+	private JButton okBtn2;
+	private JButton okBtn3;
 	
 	public MainPanel() {
 		
@@ -145,7 +165,7 @@ public class MainPanel extends JPanel{
 		registPanel = new JPanel();
 		registPanel.setLayout(null);
 		registPanel.setVisible(false);
-		registPanel.setBounds(0, 0, 1500, 800);
+		registPanel.setBounds(0, 0, 1600, 900);
 		registPanel.setOpaque(false);
 		
 		/* ID, PW  */
@@ -207,6 +227,77 @@ public class MainPanel extends JPanel{
 		exitBtn2.setContentAreaFilled(false);
 		exitBtn2.setFocusPainted(false);
 		
+		/* 팝업창 패널 */
+		popUpPanel = new JPanel();
+		popUpPanel.setLayout(null);
+		popUpPanel.setVisible(false);
+		popUpPanel.setBounds(0, 0, 1600, 900);
+		popUpPanel.setOpaque(false);
+		
+		/* 로그인 팝업 */
+		loginSuccesslabel = new JLabel();
+		loginSuccesslabel.setVisible(false);
+		loginSuccesslabel.setIcon(loginSuccessImg);
+		loginSuccesslabel.setBounds(425, 180, 744, 578);
+		
+		loginFaillabel = new JLabel();
+		loginFaillabel.setVisible(false);
+		loginFaillabel.setIcon(loginFailImg);
+		loginFaillabel.setBounds(425, 180, 744, 578);
+		
+		okBtn = new JButton();
+		okBtn.setVisible(false);;
+		okBtn.setIcon(okBtnImg);
+		okBtn.setBounds(690, 650, 236, 66);
+		okBtn.setBorderPainted(false);
+		okBtn.setContentAreaFilled(false);
+		okBtn.setFocusPainted(false);
+		
+		okBtn2 = new JButton();
+		okBtn2.setVisible(false);;
+		okBtn2.setIcon(okBtnImg);
+		okBtn2.setBounds(690, 650, 236, 66);
+		okBtn2.setBorderPainted(false);
+		okBtn2.setContentAreaFilled(false);
+		okBtn2.setFocusPainted(false);
+		
+		okBtn3 = new JButton();
+		okBtn3.setVisible(false);;
+		okBtn3.setIcon(okBtnImg);
+		okBtn3.setBounds(690, 650, 236, 66);
+		okBtn3.setBorderPainted(false);
+		okBtn3.setContentAreaFilled(false);
+		okBtn3.setFocusPainted(false);
+		
+		registOkBtn = new JButton();
+		registOkBtn.setVisible(false);;
+		registOkBtn.setIcon(okBtnImg);
+		registOkBtn.setBounds(690, 650, 236, 66);
+		registOkBtn.setBorderPainted(false);
+		registOkBtn.setContentAreaFilled(false);
+		registOkBtn.setFocusPainted(false);
+		
+		/* 회원가입 팝업 */
+		registSuccesslabel = new JLabel();
+		registSuccesslabel.setVisible(false);
+		registSuccesslabel.setIcon(registSuccessImg);
+		registSuccesslabel.setBounds(425, 180, 744, 578);
+		
+		registFailNoPwdlabel = new JLabel();
+		registFailNoPwdlabel.setVisible(false);
+		registFailNoPwdlabel.setIcon(registFailNoPwdImg);
+		registFailNoPwdlabel.setBounds(425, 180, 744, 578);
+		
+		registFailWrongPwdlabel = new JLabel();
+		registFailWrongPwdlabel.setVisible(false);
+		registFailWrongPwdlabel.setIcon(registFailWrongPwdImg);
+		registFailWrongPwdlabel.setBounds(425, 180, 744, 578);
+		
+		registFailDupIdlabel = new JLabel();
+		registFailDupIdlabel.setVisible(false);
+		registFailDupIdlabel.setIcon(registFailDupIDImg);
+		registFailDupIdlabel.setBounds(425, 180, 744, 578);
+		
 		/* 패널 부착 */
 		loginPanel.add(logoLabel);
 		loginPanel.add(idImgLabel);
@@ -230,7 +321,19 @@ public class MainPanel extends JPanel{
 		registPanel.add(confirmPwLabel);
 		registPanel.add(registerBtn2);
 		registPanel.add(exitBtn2);
+		
+		popUpPanel.add(okBtn);
+		popUpPanel.add(okBtn2);
+		popUpPanel.add(okBtn3);
+		popUpPanel.add(registOkBtn);
+		popUpPanel.add(loginSuccesslabel);
+		popUpPanel.add(registSuccesslabel);
+		popUpPanel.add(registFailWrongPwdlabel);
+		popUpPanel.add(registFailNoPwdlabel);
+		popUpPanel.add(registFailDupIdlabel);
+		popUpPanel.add(loginFaillabel);
 
+		this.add(popUpPanel);
 		this.add(loginPanel);
 		this.add(registPanel);
 	}
@@ -345,106 +448,28 @@ public class MainPanel extends JPanel{
 				
 				int loginResult = userController.loginSuccess(map);
 				
-				if (loginResult == 1) {
-					JOptionPane.showMessageDialog(null, "로그인 성공");
+				if (loginResult == 1) {									// 로그인 성공
+					popUpPanel.setVisible(true);
+					loginSuccesslabel.setVisible(true);
+					okBtn.setVisible(true);
+					
+					battlePanel.setCharacter(character);				
 					loginPanel.setVisible(false);
-				} else if (loginResult == 0) {
-					JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다.");
-				} else if (loginResult == -1) {
-					JOptionPane.showMessageDialog(null, "아이디가 없습니다.");
+				} else if (loginResult == 0) {							// 비밀번호 불일치
+					popUpPanel.setVisible(true);
+					loginFaillabel.setVisible(true);
+					okBtn2.setVisible(true);
+				} else if (loginResult == -1) {							// 아이디 없음
+					popUpPanel.setVisible(true);
+					loginFaillabel.setVisible(true);
+					okBtn2.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "DB 오류");
 				}
 
 			}
 		});
-		
-		registerBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				loginPanel.setVisible(false);
-				registPanel.setVisible(true);
-				
-			}
-		});
-		
-		registerBtn2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				registPanel.setVisible(false);
-				loginPanel.setVisible(true);
-				
-			}
-		});
-		
-		registerBtn.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				registerBtn.setIcon(new ImageIcon("image/registerBtn.png"));
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				registerBtn.setIcon(new ImageIcon("image/registerBtn_Clicked.png"));
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		registerBtn2.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				registerBtn2.setIcon(new ImageIcon("image/registerBtn.png"));
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				registerBtn2.setIcon(new ImageIcon("image/registerBtn_Clicked.png"));
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-
+	
 		
 		registerBtn.addActionListener(new ActionListener() {
 			
@@ -466,7 +491,10 @@ public class MainPanel extends JPanel{
 				String pw = Arrays.toString(pwField2.getPassword());
 				String confirmPw = Arrays.toString(confirmPwField.getPassword());
 				
-				if (pw.equals(confirmPw) && pw != "[]") {
+				int sameIdResult = userController.selectSameId(id);
+				
+				
+				if (pw.equals(confirmPw) && pw != "[]" && sameIdResult != -1) {			// 회원 가입 성공
 					Map<String, String> map = new HashMap<>();
 					map.put("ID", id);
 					map.put("PW", pw);
@@ -474,14 +502,22 @@ public class MainPanel extends JPanel{
 					userController.registPlayer(map);
 					int infoResult = userController.registInfo(map);
 					
-					JOptionPane.showMessageDialog(null, "회원 가입 성공!");
+					popUpPanel.setVisible(true);
+					registSuccesslabel.setVisible(true);
+					registOkBtn.setVisible(true);
 					
-					registPanel.setVisible(false);
-					loginPanel.setVisible(true);
-				} else if (pw == "[]") {
-					JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.");
-				} else {
-					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
+				} else if (pw == "[]") {												// 비밀번호 미입력
+					popUpPanel.setVisible(true);
+					registFailNoPwdlabel.setVisible(true);
+					okBtn3.setVisible(true);
+				} else if (sameIdResult == -1) {										// 아이디 중복
+					popUpPanel.setVisible(true);
+					registFailDupIdlabel.setVisible(true);
+					okBtn3.setVisible(true);
+				} else {																// 비밀번호 다름
+					popUpPanel.setVisible(true);
+					registFailWrongPwdlabel.setVisible(true);
+					okBtn3.setVisible(true);
 				}
 				
 			}
@@ -562,6 +598,183 @@ public class MainPanel extends JPanel{
 			public void mouseEntered(MouseEvent e) {
 				exitBtn2.setIcon(new ImageIcon("image/exit_Clicked.png"));
 				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	
+		okBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popUpPanel.setVisible(false);
+				okBtn.setVisible(false);
+			}
+		});
+	
+		okBtn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				okBtn.setIcon(new ImageIcon("image/okBtn.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				okBtn.setIcon(new ImageIcon("image/okBtn_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	
+		okBtn2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popUpPanel.setVisible(false);
+				loginFaillabel.setVisible(false);
+				okBtn2.setVisible(false);
+				
+				idField.setText("");
+				idField.requestFocus();
+				pwField.setText("");
+			}
+		});
+	
+		okBtn2.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				okBtn2.setIcon(new ImageIcon("image/okBtn.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				okBtn2.setIcon(new ImageIcon("image/okBtn_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		okBtn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popUpPanel.setVisible(false);
+				registFailNoPwdlabel.setVisible(false);
+				registFailWrongPwdlabel.setVisible(false);
+				registFailDupIdlabel.setVisible(false);
+				okBtn3.setVisible(false);
+				
+				pwField2.setText("");
+				confirmPwField.setText("");
+				pwField2.requestFocus();
+			}
+		});
+	
+		okBtn3.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				okBtn3.setIcon(new ImageIcon("image/okBtn.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				okBtn3.setIcon(new ImageIcon("image/okBtn_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	
+		registOkBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popUpPanel.setVisible(false);
+				registPanel.setVisible(false);
+				registSuccesslabel.setVisible(false);
+				registOkBtn.setVisible(false);
+				
+				loginPanel.setVisible(true);
+			}
+		});
+		
+		registOkBtn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				registOkBtn.setIcon(new ImageIcon("image/okBtn.png"));
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				registOkBtn.setIcon(new ImageIcon("image/okBtn_Clicked.png"));
 			}
 			
 			@Override
