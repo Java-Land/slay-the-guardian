@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key="insertPlayer">
+		INSERT
+		  INTO PLAYER A
+		  (
+		    A.USER_ID
+		  , A.USER_PWD
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
+	
+	<entry key="insertLogin">
+		INSERT
+		  INTO PLAYER_INFO A
+		  (
+		    A.PLAYER_CODE
+		  , A.PLAYER_ID
+		  , A.PLAY_TIME
+		  )
+		  VALUES
+		  (
+		    SEQ_LOGIN_NO.NEXTVAL
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
+	
+	<entry key="selectUserId">
+		SELECT
+		       A.USER_PWD
+		  FROM PLAYER A
+		 WHERE A.USER_ID = ?
+	</entry>
+</properties>
+
+
+
+
+
+
