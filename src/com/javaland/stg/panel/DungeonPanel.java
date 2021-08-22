@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/* 아무거나 */
 /* 이준한 담당 패널 */
 /* 푸쉬 시도 */
 public class DungeonPanel extends JPanel {
