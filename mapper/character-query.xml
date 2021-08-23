@@ -20,6 +20,29 @@
  		 WHERE A.PLAYER_ID = ?
  		   AND A.PLAYER_LIVE_YN = 'Y'
 	</entry>
+	
+	<entry key="characterUpdateService">
+		UPDATE
+		PLAYER_INFO A
+   		   SET 
+     		   A.PLAYER_HP = A.PLAYER_MAX_HP
+     		 , A.PLAYER_MAX_HP = DEFAULT
+    		 , A.PLAYER_SP = DEFAULT
+    		 , A.PLAYER_DP = DEFAULT
+    		 , A.PLAYER_GOLD = DEFAULT
+    		 , A.PLAYER_EXP = DEFAULT
+    		 , A.PLAYER_LEVEL = DEFAULT
+    		 , A.PLAY_TIME = DEFAULT
+    		 , A.PLAYER_LIVE_YN = DEFAULT
+    		 , A.STAGE1_CLEAR_YN = DEFAULT
+    		 , A.STAGE2_CLEAR_YN = DEFAULT
+		 WHERE PLAYER_CODE = ?
+		   AND PLAYER_ID = ?
+	</entry>
 </properties>
+
+
+
+
 
 
