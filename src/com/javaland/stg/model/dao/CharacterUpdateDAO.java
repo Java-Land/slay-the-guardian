@@ -25,25 +25,24 @@ public class CharacterUpdateDAO {
 		}
 	}
 	
-	public CharacterDTO characterUpdateService(Connection con, String id, int code) {
+	public int characterUpdateService(Connection con, CharacterDTO character) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("characterUpdateService");
 		
-		CharacterDTO character = null;
+		int result = 0;
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, id);
-			pstmt.setInt(2, code);
+			pstmt.setString(1, character.getId());
+			pstmt.setInt(2, character.getCode());
 			
 			rset = pstmt.executeQuery();
 			
-			character = new CharacterDTO();
 			
-			while(rset.next()) {
+			if(rset.next()) {
 				character.setCode(rset.getInt("PLAYER_CODE"));
 				character.setId(rset.getString("PLAYER_ID"));
 				character.setHp(rset.getInt("PLAYER_HP"));
@@ -58,6 +57,7 @@ public class CharacterUpdateDAO {
 				character.setStage1ClearYN(rset.getString("STAGE1_CLEAR_YN"));
 				character.setStage2ClearYN(rset.getString("STAGE2_CLEAR_YN"));
 			}
+			result = 1;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,6 +66,6 @@ public class CharacterUpdateDAO {
 			close(pstmt);
 		}
 		
-		return character;
+		return result;
 	}
 }

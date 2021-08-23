@@ -7,10 +7,10 @@ public class CharacterUpdateController {
 
 	private CharacterUpdateService characterUpdateService = new CharacterUpdateService();
 	
-	public CharacterDTO updatePlayer(String id, int code) {
+	public int updatePlayer(CharacterDTO character) {
 		
-		CharacterDTO character = characterUpdateService.characterUpdateService(id, code);
+		int result = characterUpdateService.characterUpdateService(character);
 		
-		return character;
+		return result;
 	}
 }
