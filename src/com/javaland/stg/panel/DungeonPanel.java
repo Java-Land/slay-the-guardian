@@ -137,8 +137,7 @@ public class DungeonPanel extends JPanel {
 		bossMonster1Textlb.setIcon(bossMonster1Text);
 		bossMonster1Textlb.setBounds(1310, 543, 247, 103);
 		
-		/* 버튼 부착 */
-		dungeonPanel.add(returnLogo);
+		/* 라벨 부착 */
 		dungeonPanel.add(monster1Textlb);
 		dungeonPanel.add(monster2Textlb);
 		dungeonPanel.add(monster3Textlb);
@@ -155,13 +154,6 @@ public class DungeonPanel extends JPanel {
 		
 	}
 
-	private void add(ImageIcon returnLogo2) {
-
-	}
-
-	private void add(Image backImg2) {
-
-	}
 
 	public void eventStart() {
 
