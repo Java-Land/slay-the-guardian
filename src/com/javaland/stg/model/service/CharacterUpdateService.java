@@ -15,7 +15,7 @@ public class CharacterUpdateService {
 	public int characterUpdateService(CharacterDTO character) {
 		Connection con = getConnection();
 		
-//		int result = characterUpdateDAO.characterUpdateService(con, character);
+		int result = characterUpdateDAO.characterUpdateService(con, character);
 		
 		close(con);
 		

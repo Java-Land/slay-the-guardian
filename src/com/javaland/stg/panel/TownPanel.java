@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김지혁 담당 패널 */
+/* 푸쉬 다시 */
 public class TownPanel extends JPanel{
 	
 	Image backImg = new ImageIcon("image/TownPanelBackIMG.png").getImage();
@@ -251,7 +252,7 @@ public class TownPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				/* 휴식 버튼 클릭 시 체력 회복 */
-//				character.setHp(character.getMaxHp());
+				character.setHp(character.getMaxHp());
 				restPanel.setVisible(true);
 				townPanel1.setVisible(false);
 				
