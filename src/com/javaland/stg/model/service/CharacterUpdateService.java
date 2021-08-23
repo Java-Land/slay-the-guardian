@@ -12,13 +12,13 @@ public class CharacterUpdateService {
 
 	private CharacterUpdateDAO characterUpdateDAO = new CharacterUpdateDAO();
 	
-	public CharacterDTO characterUpdateService(String id, int code) {
+	public int characterUpdateService(CharacterDTO character) {
 		Connection con = getConnection();
 		
-		CharacterDTO character = characterUpdateDAO.characterUpdateService(con, id, code);
+		int result = characterUpdateDAO.characterUpdateService(con, character);
 		
 		close(con);
 		
-		return character;
+		return 0;
 	}
 }
