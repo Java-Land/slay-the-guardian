@@ -252,7 +252,7 @@ public class TownPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				/* 휴식 버튼 클릭 시 체력 회복 */
-//				character.setHp(character.getMaxHp());
+				character.setHp(character.getMaxHp());
 				restPanel.setVisible(true);
 				townPanel1.setVisible(false);
 				
