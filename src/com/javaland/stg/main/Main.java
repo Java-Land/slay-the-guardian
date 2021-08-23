@@ -33,6 +33,14 @@ public class Main {
 		townPanel.panelInit(scriptPanel, mainPanel, stagePanel, dungeonPanel, battlePanel, adminPanel, storePanel);
 		storePanel.panelInit(scriptPanel, mainPanel, stagePanel, dungeonPanel, battlePanel, adminPanel, townPanel);
 		
+		adminPanel.setVisible(false);
+		battlePanel.setVisible(false);
+		dungeonPanel.setVisible(false);
+		stagePanel.setVisible(false);
+		townPanel.setVisible(false);
+		storePanel.setVisible(false);
+		scriptPanel.setVisible(false);
+		
 		mainPanel.eventStart();
 		adminPanel.eventStart();
 		battlePanel.eventStart();
