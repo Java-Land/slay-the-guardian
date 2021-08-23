@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.javaland.stg.model.dto.CharacterDTO;
 /* 이신희담당 */
 public class StagePanel extends JPanel{
 	
