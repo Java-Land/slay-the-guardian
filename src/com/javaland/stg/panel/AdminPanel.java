@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,7 +25,9 @@ import javax.swing.table.TableColumnModel;
 public class AdminPanel extends JPanel{
 
 	Image backImg = new ImageIcon("image/MainPanelBackIMG.png").getImage();
-	private ImageIcon closeImg = new ImageIcon("image/close.png");
+	ImageIcon adminLogo = new ImageIcon("image/adminLogo.png");
+	
+	private ImageIcon adminExit = new ImageIcon("image/adminExit.png");
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
 	private TownPanel townPanel;
@@ -35,6 +39,7 @@ public class AdminPanel extends JPanel{
 
 	private JLabel adminTitlelb;
 	private JScrollPane scrolledTable;
+	private JButton adminExitBtn;
 
 	public AdminPanel() {
 		adminPanel = this;
@@ -42,14 +47,9 @@ public class AdminPanel extends JPanel{
 		this.setLayout(null);
 
 		/*타이틀 라벨 생성*/
-		JLabel adminTitlelb = new JLabel("관리자 모드");
-		adminTitlelb.setBounds(640, 50, 300, 80);
-		adminTitlelb.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
-		adminTitlelb.setOpaque(true);
-		adminTitlelb.setBackground(new Color(192, 192, 192, 150));
-
-		Font titleFont = new Font("돋움", Font.BOLD, 50);
-		adminTitlelb.setFont(titleFont);
+		JLabel adminLogolb = new JLabel();
+		adminLogolb.setIcon(adminLogo);
+		adminLogolb.setBounds(640, 50, 300, 80);
 
 
 		/*유저 정보 테이블 생성*/
@@ -79,14 +79,29 @@ public class AdminPanel extends JPanel{
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("굴림", Font.BOLD, 15));
  
-		/*AdminPanel에 컴포넌트 추가*/
-		this.add(adminTitlelb);
-		this.add(scrolledTable);
+		
+		JButton adminExitBtn = new JButton();
+		adminExitBtn.setIcon(adminExit);
+		adminExitBtn.setBounds(1450, 20, 90, 90);
+		adminExitBtn.setBorderPainted(false);
+		adminExitBtn.setContentAreaFilled(false);
+		adminExitBtn.setFocusPainted(false);
 
+		/*AdminPanel에 컴포넌트 추가*/
+		this.add(adminLogolb);
+		this.add(scrolledTable);
+		this.add(adminExitBtn);
 	}
  
 	public void eventStart() {
-
+//		adminExitBtn.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				adminPanel.setVisible(false);
+//				mainPanel.setVisible(true);
+//			}
+//		});
 	}
 
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
