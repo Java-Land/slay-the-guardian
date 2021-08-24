@@ -17,22 +17,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.javaland.stg.controller.CharacterUpdateController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김지혁 담당 패널 */
+/* 푸쉬 다시 */
 public class TownPanel extends JPanel{
 	
 	Image backImg = new ImageIcon("image/TownPanelBackIMG.png").getImage();
-	Image characterImg = new ImageIcon("image/Character.png").getImage();
 	Image infoImg = new ImageIcon("image/BattleInfo.png").getImage();
-	Image storeImg = new ImageIcon("image/StorePanel.png").getImage();
-	Image blockImg = new ImageIcon("image/Block.png").getImage();
+	private ImageIcon characterImg = new ImageIcon("image/Character.png");
+	private ImageIcon blockImg = new ImageIcon("image/Block.png");
 	private ImageIcon nextImg = new ImageIcon("image/NextBtn.png");
 	private ImageIcon restImg = new ImageIcon("image/RestBtn.PNG");
 	private ImageIcon marketImg = new ImageIcon("image/StoreBtn.png");
 	private ImageIcon exitImg = new ImageIcon("image/ExitBtn1.png");
-	private ImageIcon yesImg = new ImageIcon("image/loginBtn.png");
-	private ImageIcon noImg = new ImageIcon("image/loginBtn.png");
+	private ImageIcon yesImg = new ImageIcon("image/yes.png");
+	private ImageIcon noImg = new ImageIcon("image/no.png");
+	private ImageIcon fullHpImg = new ImageIcon("image/Fullhp.png");
+
+	private CharacterUpdateController characterUpdate = new CharacterUpdateController();
 	
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
@@ -47,11 +51,15 @@ public class TownPanel extends JPanel{
 	
 	private JPanel blockPanel;
 	private JPanel townPanel1;
+	private JPanel restPanel;
 	
 	private JLabel goldLabel;
 	private JLabel yesLabel;
 	private JLabel noLabel;
 	private JLabel characterHpLabel;
+	private JLabel blockLabel;
+	private JLabel characterLabel;
+	private JLabel fullHpLabel;
 	
 	private JButton nextButton;
 	private JButton restButton;
@@ -59,6 +67,7 @@ public class TownPanel extends JPanel{
 	private JButton exitButton;
 	private JButton yesButton;
 	private JButton noButton;
+	private JButton exitButton2;
 	
 	public TownPanel() {
 		townPanel = this;
@@ -77,7 +86,6 @@ public class TownPanel extends JPanel{
 		nextButton.setContentAreaFilled(false);
 		nextButton.setFocusPainted(false);
 		nextButton.setIcon(nextImg);
-		townPanel1.add(nextButton);
 		
 		/* 휴식 버튼 */
 		restButton = new JButton();
@@ -86,7 +94,18 @@ public class TownPanel extends JPanel{
 		restButton.setContentAreaFilled(false);
 		restButton.setFocusPainted(false);
 		restButton.setIcon(restImg);
-		townPanel1.add(restButton);
+		
+		/* rest 패널 */
+		restPanel = new JPanel();
+		restPanel.setLayout(null);
+		restPanel.setBounds(0, 0, 1600, 900);
+		restPanel.setVisible(false);
+		restPanel.setOpaque(false);
+		
+		/* 체력 회복 라벨 */
+		fullHpLabel = new JLabel();
+		fullHpLabel.setIcon(fullHpImg);
+		fullHpLabel.setBounds(425, 180, 744, 578);
 		
 		/* 캐릭터 체력 라벨 */
 		characterHpLabel = new JLabel();
@@ -94,7 +113,6 @@ public class TownPanel extends JPanel{
 		characterHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
 		characterHpLabel.setBounds(555, 500, 100, 30);
 		characterHpLabel.setForeground(Color.RED);
-		townPanel1.add(characterHpLabel);
 		
 		/* 상점 버튼 */
 		storeButton = new JButton();
@@ -103,16 +121,14 @@ public class TownPanel extends JPanel{
 		storeButton.setContentAreaFilled(false);
 		storeButton.setFocusPainted(false);
 		storeButton.setIcon(marketImg);
-		townPanel1.add(storeButton);
 		
 		/* 나가기 버튼 */
 		exitButton = new JButton();
-		exitButton.setBounds(1490, 10, 101, 90);
+		exitButton.setBounds(1400, 25, 101, 90);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
 		exitButton.setFocusPainted(false);
 		exitButton.setIcon(exitImg);
-		townPanel1.add(exitButton);
 		
 		/* 골드 라벨 */
 		goldLabel = new JLabel();
@@ -120,38 +136,73 @@ public class TownPanel extends JPanel{
 		goldLabel.setFont(new Font("Koren", Font.PLAIN, 30));
 		goldLabel.setBounds(170, 13, 200, 50);
 		goldLabel.setForeground(new Color(188, 191, 42));
-		townPanel1.add(goldLabel);
 		
-//		/* block 패널 */
-//		blockPanel = new JPanel();
-//		blockPanel.setLayout(null);
-//		blockPanel.setBounds(450, 200, 650, 500);
-//		blockPanel.setVisible(false);
-//		blockPanel.setBackground(Color.BLACK);
-
-
-//		blockPanel.setOpaque(false);
+		/* 캐릭터 라벨 */
+		characterLabel = new JLabel();
+		characterLabel.setIcon(characterImg);
+		characterLabel.setBounds(445, 380, 420, 547);
 		
-		/* 네 버튼 */
+		/* block 패널 */
+		blockPanel = new JPanel();
+		blockPanel.setLayout(null);
+		blockPanel.setBounds(0, 0, 1600, 900);
+		blockPanel.setVisible(false);
+		blockPanel.setOpaque(false);
+		
+		/* block 라벨 */
+		blockLabel = new JLabel();
+		blockLabel.setIcon(blockImg);
+		blockLabel.setBounds(425, 180, 744, 578);
+		
+		/* 예 버튼 */
 		yesButton = new JButton();
-		yesButton.setBounds(600, 650, 230, 100);
+		yesButton.setBounds(470, 570, 230, 64);
 		yesButton.setBorderPainted(false);
 		yesButton.setContentAreaFilled(false);
 		yesButton.setFocusPainted(false);
 		yesButton.setIcon(yesImg);
-//		blockPanel.add(yesButton);
+		
+		
 		
 		/* 아니오 버튼 */
 		noButton = new JButton();
-		noButton.setBounds(800, 650, 230, 100);
+		noButton.setBounds(800, 570, 230, 64);
 		noButton.setBorderPainted(false);
 		noButton.setContentAreaFilled(false);
 		noButton.setFocusPainted(false);
 		noButton.setIcon(noImg);
 		
-//		this.add(blockPanel);
+		/* 뒤로가기 버튼 */
+		exitButton2 = new JButton();
+		exitButton2.setIcon(exitImg);
+		exitButton2.setBounds(1400, 25, 101, 90);
+		exitButton2.setBorderPainted(false);
+		exitButton2.setContentAreaFilled(false);
+		exitButton2.setFocusPainted(false);
+		
+		/* 패널 부착 */
 		this.add(townPanel1);
-//		this.add(yesButton);
+		this.add(blockPanel);
+		this.add(restPanel);
+		
+		blockPanel.add(yesButton);
+		blockPanel.add(noButton);
+		blockPanel.add(exitButton2);
+		
+		blockPanel.add(blockLabel);		
+		
+		townPanel1.add(nextButton);		
+		townPanel1.add(exitButton);
+		townPanel1.add(storeButton);
+		townPanel1.add(restButton);
+		townPanel1.add(characterHpLabel);
+		townPanel1.add(goldLabel);
+		townPanel1.add(characterLabel);
+		
+		restPanel.add(fullHpLabel);
+		restPanel.add(exitButton2);
+		
+		
 		
 		character = new CharacterDTO();
 		characterInforefresh();
@@ -159,34 +210,6 @@ public class TownPanel extends JPanel{
 	
 	
 	public void eventStart() {
-		
-		storeButton.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
 		
 		nextButton.addActionListener(new ActionListener() {
 			
@@ -202,6 +225,10 @@ public class TownPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				/* 휴식 버튼 클릭 시 체력 회복 */
+				character.setHp(character.getMaxHp());
+				characterUpdate.updatePlayer(character);
+				restPanel.setVisible(true);
+				townPanel1.setVisible(false);
 				
 			}
 		});
@@ -212,8 +239,7 @@ public class TownPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				townPanel.setVisible(false);
 				storePanel.setVisible(true);
-//				storeImg = new ImageIcon("image/StorePanel.png").getImage();
-//				repaint();
+				
 			}
 		});
 		
@@ -222,15 +248,103 @@ public class TownPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "나가시겠습니까?");
 				
-//				townPanel1.setVisible(false);
-//				blockPanel.setVisible(true);
-//				blockPanel.add(yesButton);
+				townPanel1.setVisible(false);
+				blockPanel.setVisible(true);
+				
+			}
+		});
+		
+		exitButton2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				townPanel1.setVisible(true);
+				blockPanel.setVisible(false);
+				restPanel.setVisible(false);
+				
+			}
+		});
+		
+		yesButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				townPanel.setVisible(false);
+				blockPanel.setVisible(false);
+			}
+		});
+		
+		noButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				townPanel1.setVisible(true);
+				blockPanel.setVisible(false);
+			}
+		});
+		
+		yesButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				yesButton.setIcon(new ImageIcon("image/yes.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				yesButton.setIcon(new ImageIcon("image/yes_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		noButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				noButton.setIcon(new ImageIcon("image/no.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				noButton.setIcon(new ImageIcon("image/no_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				
 			}
 		});
 	}
+	
+	
 	
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
@@ -258,9 +372,8 @@ public class TownPanel extends JPanel{
 		super.paintComponent(g);
 		
 		g.drawImage(backImg, 0, 0, townPanel);
-		g.drawImage(characterImg, 445, 550, townPanel);
 		g.drawImage(infoImg, 0, 10, townPanel);
-//		g.drawImage(blockImg, 250, 200, blockPanel);
+
 	}
 	
 	public static void main(String[] args) {
