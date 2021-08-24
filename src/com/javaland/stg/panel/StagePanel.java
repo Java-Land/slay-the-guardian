@@ -34,7 +34,7 @@ public class StagePanel extends JPanel{
 	private JButton stageBtn3;
 	private JButton exitStageBtn;
 	
-	private CharacterDTO character;            // 얘는 데려와야되는데 음
+	private CharacterDTO character;        
 
 	   
 	public StagePanel() {
@@ -96,7 +96,7 @@ public class StagePanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				dungeonPanel.setStage(2);
 				stagePanel.setVisible(false);
-	            dungeonPanel.setVisible(false);
+	            dungeonPanel.setVisible(true);
 			}
 		});
 		
@@ -106,7 +106,7 @@ public class StagePanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				dungeonPanel.setStage(3);
 				stagePanel.setVisible(false);
-	            dungeonPanel.setVisible(false);
+	            dungeonPanel.setVisible(true);
 			}
 		});
 		
