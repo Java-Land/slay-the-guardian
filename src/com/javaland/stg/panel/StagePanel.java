@@ -9,8 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.javaland.stg.model.dto.CharacterDTO;
 /* 이신희담당 */
 public class StagePanel extends JPanel{
 	
@@ -33,9 +31,6 @@ public class StagePanel extends JPanel{
 	private JButton stageBtn2;
 	private JButton stageBtn3;
 	private JButton exitStageBtn;
-	
-	private CharacterDTO character;
-
 	
 	public StagePanel() {
 		stagePanel = this;
@@ -108,8 +103,7 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			stagePanel.setVisible(false);
-			townPanel.setVisible(false);
+				
 			}
 		});
 		
@@ -124,10 +118,6 @@ public class StagePanel extends JPanel{
 		this.battlePanel = battlePanel;
 		this.adminPanel = adminPanel;
 		this.storePanel = storePanel;
-	}
-	
-	public void setCharacter(CharacterDTO character) {
-		this.character = character;
 	}
 	
 	@Override
