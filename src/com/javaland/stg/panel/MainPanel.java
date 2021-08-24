@@ -453,7 +453,10 @@ public class MainPanel extends JPanel{
 					loginSuccesslabel.setVisible(true);
 					okBtn.setVisible(true);
 					
-					battlePanel.setCharacter(character);				
+//					battlePanel.setCharacter(character);				
+//					townPanel.setCharacter(character);				
+//					stagePanel.setCharacter(character);		
+					
 					loginPanel.setVisible(false);
 				} else if (loginResult == 0) {							// 비밀번호 불일치
 					popUpPanel.setVisible(true);

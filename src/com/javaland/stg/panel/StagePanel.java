@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.javaland.stg.model.dto.CharacterDTO;
 /* 이신희담당 */
 public class StagePanel extends JPanel{
 	
@@ -32,6 +34,9 @@ public class StagePanel extends JPanel{
 	private JButton stageBtn3;
 	private JButton exitStageBtn;
 	
+	private CharacterDTO character;            // 얘는 데려와야되는데 음
+
+	   
 	public StagePanel() {
 		stagePanel = this;
 		this.setBounds(0, 0, 1600, 900);
@@ -79,7 +84,8 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+	            stagePanel.setVisible(false);
+	            dungeonPanel.setVisible(true);        // 스테이지 1을 눌렀을 때 던전패널이 나오게
 			}
 		});
 		
@@ -87,7 +93,9 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+	            stagePanel.setVisible(false);
+	            dungeonPanel.setVisible(false);
+	            stageBtn2.setEnabled(true);  		// 스테이지 2 눌렀을 때 던전패널 나오게
 			}
 		});
 		
@@ -95,7 +103,9 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+	            stagePanel.setVisible(false);
+	            dungeonPanel.setVisible(false);
+	            stageBtn3.setEnabled(true);			// 스테이지 3눌렀을 때 던전패널 보이게
 			}
 		});
 		
@@ -103,10 +113,27 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+	            stagePanel.setVisible(false);
+	            townPanel.setVisible(true);				// 나가기 눌렀을 때 타운 패널이 보이게
 			}
 		});
 		
+//	      stageBtn2.setEnabled(false);    // 스테이지 클리어 못했을때         
+//	      stageBtn3.setEnabled(false);      
+		
+	}
+	// 스테이지 클리어 여부 'Y'이면 열리고 'N'이면 안열리게 하는 메소드
+	public void stageClearYN() {   
+	      if (character.getStage1ClearYN().equals("Y")) {
+	         stageBtn2.setEnabled(true);
+	      } else {
+	         stageBtn2.setEnabled(false);
+	      }
+	      if (character.getStage2ClearYN().equals("Y")) {
+	         stageBtn3.setEnabled(true);
+	      } else {
+	         stageBtn3.setEnabled(false);
+	      }		
 	}
 	
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, MainPanel mainPanel,
