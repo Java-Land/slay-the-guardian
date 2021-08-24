@@ -52,7 +52,7 @@ public class DungeonPanel extends JPanel {
 
 	private JButton returnLogoBtn;
 	private JButton stageLogo;
-	
+
 	/* 스태이지 버튼 이미지 */
 	private JButton stageLogo1Btn;
 	private JButton stageLogo2Btn;
@@ -110,7 +110,7 @@ public class DungeonPanel extends JPanel {
 		monster2Btn.setBorderPainted(false);
 		monster2Btn.setContentAreaFilled(false);
 		monster2Btn.setFocusPainted(false);
-		
+
 		/* 던전 몬스터 3 이미지 버튼부착 */
 		monster3Btn = new JButton();
 		monster3Btn.setIcon(monster3);
@@ -118,7 +118,7 @@ public class DungeonPanel extends JPanel {
 		monster3Btn.setBorderPainted(false);
 		monster3Btn.setContentAreaFilled(false);
 		monster3Btn.setFocusPainted(false);
-		
+
 		/* 보스 몬스터 1 이미지 버튼부착 */
 		bossMonster1Btn = new JButton();
 		bossMonster1Btn.setIcon(bossMonster1);
@@ -126,35 +126,33 @@ public class DungeonPanel extends JPanel {
 		bossMonster1Btn.setBorderPainted(false);
 		bossMonster1Btn.setContentAreaFilled(false);
 		bossMonster1Btn.setFocusPainted(false);
-	
-		
-		/* 던전 몬스터 1 이름 라벨 부착 */ 
+
+		/* 던전 몬스터 1 이름 라벨 부착 */
 		monster1Textlb = new JLabel();
 		monster1Textlb.setIcon(monster1Text);
 		monster1Textlb.setBounds(89, 543, 247, 103);
-		
-		/* 던전 몬스터 2 이름 라벨 부착 */ 
+
+		/* 던전 몬스터 2 이름 라벨 부착 */
 		monster2Textlb = new JLabel();
 		monster2Textlb.setIcon(monster2Text);
 		monster2Textlb.setBounds(455, 543, 247, 103);
-		
-		/* 던전 몬스터 3 이름 라벨 부착 */ 
+
+		/* 던전 몬스터 3 이름 라벨 부착 */
 		monster3Textlb = new JLabel();
 		monster3Textlb.setIcon(monster3Text);
 		monster3Textlb.setBounds(869, 543, 247, 103);
-		
-		/* 보스 몬스터 1 이름 라벨 부착 */ 
+
+		/* 보스 몬스터 1 이름 라벨 부착 */
 		bossMonster1Textlb = new JLabel();
 		bossMonster1Textlb.setIcon(bossMonster1Text);
 		bossMonster1Textlb.setBounds(1310, 543, 247, 103);
-		
+
 		/* 라벨 부착 */
 		dungeonPanel.add(monster1Textlb);
 		dungeonPanel.add(monster2Textlb);
 		dungeonPanel.add(monster3Textlb);
 		dungeonPanel.add(bossMonster1Textlb);
-		
-		
+
 		/* 버튼 구현 */
 		this.add(returnLogoBtn);
 		this.add(stageLogo1Btn);
@@ -162,8 +160,7 @@ public class DungeonPanel extends JPanel {
 		this.add(monster2Btn);
 		this.add(monster3Btn);
 		this.add(bossMonster1Btn);
-		
-		
+
 		int setStage1;
 		int setStage2;
 		int setStage3;
@@ -171,31 +168,32 @@ public class DungeonPanel extends JPanel {
 		int monster2;
 		int monster3;
 		int setBossStage;
-		
+
 //		int stageNum()
-		
+
 	}
+
 	int resultNum;
-	
-	public void setStage(int stageNum) {  	//신희님꺼 보고
-		switch (stageNum) {					//신희님꺼 보고
+
+	public void setStage(int stageNum) { // 신희님꺼 보고
+		switch (stageNum) { // 신희님꺼 보고
 		case 1:
 			stageLogo1Btn.setIcon(stageLogo1);
-			bossMonster1Btn.setIcon(bossMonster1); 
+			bossMonster1Btn.setIcon(bossMonster1);
 			resultNum = 1;
 			break;
 		case 2:
-			stageLogo1Btn.setIcon(stageLogo2);									//stageLogo1Btn 위치에 stageLogo2버튼으로 이미지만 바뀐다.
-			bossMonster1Btn.setIcon(bossMonster2); 							    //bossMonster1Btn 위치에 bossMonster2버튼으로 이미지만 바뀐다.
+			stageLogo1Btn.setIcon(stageLogo2); // stageLogo1Btn 위치에 stageLogo2버튼으로 이미지만 바뀐다.
+			bossMonster1Btn.setIcon(bossMonster2); // bossMonster1Btn 위치에 bossMonster2버튼으로 이미지만 바뀐다.
 			resultNum = 2;
 			break;
 		case 3:
-			stageLogo1Btn.setIcon(stageLogo3);									//stageLogo1Btn 위치에 stageLogo3버튼으로 이미지만 바뀐다.
-			bossMonster1Btn.setIcon(bossMonster3);                              //bossMonster1Btn 위치에 bossMonster3버튼으로 이미지만 바뀐다.
+			stageLogo1Btn.setIcon(stageLogo3); // stageLogo1Btn 위치에 stageLogo3버튼으로 이미지만 바뀐다.
+			bossMonster1Btn.setIcon(bossMonster3); // bossMonster1Btn 위치에 bossMonster3버튼으로 이미지만 바뀐다.
 			resultNum = 3;
 			break;
-			}
 		}
+	}
 
 	public void eventStart() {
 
@@ -203,29 +201,29 @@ public class DungeonPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				battlePanel.startBattle(mystageNum, 1);
 				dungeonPanel.setVisible(false);
 				townPanel.setVisible(true);
-				
+
 			}
 		});
-		
+
 		monster1Btn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(resultNum == 1) {
-				stageLogo1Btn.setIcon(stageLogo1);
-				battlePanel.startBattle(1, 1);
-		} else if (resultNum == 2) {
-				stageLogo1Btn.setIcon(stageLogo2);
-				battlePanel.startBattle(2, 1);
-		} else if (resultNum == 3) {
-				stageLogo1Btn.setIcon(stageLogo2);
-				battlePanel.startBattle(3, 1);
-		}
+
+				if (resultNum == 1) {
+					stageLogo1Btn.setIcon(stageLogo1);
+					battlePanel.startBattle(1, 1);
+				} else if (resultNum == 2) {
+					stageLogo1Btn.setIcon(stageLogo2);
+					battlePanel.startBattle(2, 1);
+				} else if (resultNum == 3) {
+					stageLogo1Btn.setIcon(stageLogo2);
+					battlePanel.startBattle(3, 1);
+				}
 				dungeonPanel.setVisible(false);
 				battlePanel.setVisible(true);
 			}
@@ -235,44 +233,44 @@ public class DungeonPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				if(resultNum == 1) {
+
+				if (resultNum == 1) {
 					stageLogo1Btn.setIcon(stageLogo1);
 					battlePanel.startBattle(1, 2);
-		} else if (resultNum == 2) {
+				} else if (resultNum == 2) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(2, 2);
-		} else if (resultNum == 3) {
+				} else if (resultNum == 3) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(3, 2);
-		}
-				
-					dungeonPanel.setVisible(false);
-					battlePanel.setVisible(true);
-		    }		
+				}
+
+				dungeonPanel.setVisible(false);
+				battlePanel.setVisible(true);
+			}
 		});
 
 		monster3Btn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(resultNum == 1) {
+
+				if (resultNum == 1) {
 					stageLogo1Btn.setIcon(stageLogo1);
 					battlePanel.startBattle(1, 3);
-		} else if (resultNum == 2) {
+				} else if (resultNum == 2) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(2, 3);
-		} else if (resultNum == 3) {
+				} else if (resultNum == 3) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(3, 3);
-		}
-					dungeonPanel.setVisible(false);
-					battlePanel.setVisible(true);
-					
-					dungeonPanel.setVisible(false);
-					battlePanel.setVisible(true);
-				
+				}
+				dungeonPanel.setVisible(false);
+				battlePanel.setVisible(true);
+
+				dungeonPanel.setVisible(false);
+				battlePanel.setVisible(true);
+
 			}
 		});
 
@@ -280,25 +278,26 @@ public class DungeonPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(resultNum == 1) {
+
+				if (resultNum == 1) {
 					stageLogo1Btn.setIcon(stageLogo1);
 					battlePanel.startBattle(1, 4);
-		} else if (resultNum == 2) {
+				} else if (resultNum == 2) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(2, 4);
-		} else if (resultNum == 3) {
+				} else if (resultNum == 3) {
 					stageLogo1Btn.setIcon(stageLogo2);
 					battlePanel.startBattle(3, 4);
-		}
-					dungeonPanel.setVisible(false);
-					battlePanel.setVisible(true);
-				
-					dungeonPanel.setVisible(false);
-					battlePanel.setVisible(true);
 				}
-			});
-		}	
+				dungeonPanel.setVisible(false);
+				battlePanel.setVisible(true);
+
+				dungeonPanel.setVisible(false);
+				battlePanel.setVisible(true);
+			}
+		});
+	}
+
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, StagePanel stagePanel, MainPanel mainPanel,
 			BattlePanel battlePanel, AdminPanel adminPanel, StorePanel storePanel) {
 		this.scriptPanel = scriptPanel;
@@ -308,7 +307,7 @@ public class DungeonPanel extends JPanel {
 		this.battlePanel = battlePanel;
 		this.adminPanel = adminPanel;
 		this.storePanel = storePanel;
-		}
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -331,7 +330,7 @@ public class DungeonPanel extends JPanel {
 		mf.add(dungeonPanel);
 
 		mf.setVisible(true);
-		
+
 //		dungeonPanel.setStage(1);
 //		try {
 //			Thread.sleep(2000);
@@ -350,7 +349,7 @@ public class DungeonPanel extends JPanel {
 //		} catch (InterruptedException e1) {
 //			e1.printStackTrace();
 //		}
-		
+
 		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
