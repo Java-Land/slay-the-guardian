@@ -84,7 +84,8 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-	            stagePanel.setVisible(false);
+	            dungeonPanel.setStage(1);
+				stagePanel.setVisible(false);
 	            dungeonPanel.setVisible(true);        // 스테이지 1을 눌렀을 때 던전패널이 나오게
 			}
 		});
@@ -93,9 +94,9 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-	            stagePanel.setVisible(false);
+				dungeonPanel.setStage(2);
+				stagePanel.setVisible(false);
 	            dungeonPanel.setVisible(false);
-	            stageBtn2.setEnabled(true);  		// 스테이지 2 눌렀을 때 던전패널 나오게
 			}
 		});
 		
@@ -103,9 +104,9 @@ public class StagePanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-	            stagePanel.setVisible(false);
+				dungeonPanel.setStage(3);
+				stagePanel.setVisible(false);
 	            dungeonPanel.setVisible(false);
-	            stageBtn3.setEnabled(true);			// 스테이지 3눌렀을 때 던전패널 보이게
 			}
 		});
 		
@@ -145,6 +146,10 @@ public class StagePanel extends JPanel{
 		this.battlePanel = battlePanel;
 		this.adminPanel = adminPanel;
 		this.storePanel = storePanel;
+	}
+	
+	public void setCharacter(CharacterDTO character) {
+		this.character = character;
 	}
 	
 	@Override

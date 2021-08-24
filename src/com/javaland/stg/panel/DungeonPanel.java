@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /* 이준한 담당 패널 */
 /* 푸쉬 시도 */
-/* 제발 되라ㅏ */
+/* 제발 되라 */
 public class DungeonPanel extends JPanel {
 
 	private Image backImg = new ImageIcon("image/DungeonPanelBackIMG.png").getImage();
