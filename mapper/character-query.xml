@@ -39,6 +39,7 @@
 		 WHERE PLAYER_CODE = ?
 		   AND PLAYER_ID = ?
 	</entry>
+	
 </properties>
 
 
