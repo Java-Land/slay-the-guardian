@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import com.javaland.stg.model.dto.CharacterDTO;
+
 public class Monster {
 	
 	private Image img;
