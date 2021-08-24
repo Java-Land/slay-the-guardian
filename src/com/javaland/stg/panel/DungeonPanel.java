@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /* 이준한 담당 패널 */
-/* 푸쉬 시도 */
 public class DungeonPanel extends JPanel {
 
 	private Image backImg = new ImageIcon("image/DungeonPanelBackIMG.png").getImage();
@@ -204,6 +203,42 @@ public class DungeonPanel extends JPanel {
 			}
 		});
 	}
+//	public void setStage1() {
+//	monster1Btn.setIcon(monster1);
+//}
+//public void setStage1() {
+//	monster2Btn.setIcon(monster2);
+//}
+//public void setStage1() {
+//	monster3Btn.setIcon(monster3);
+//}
+//public void setStage1() {
+//	bossMonster1Btn.setIcon(bossMonster1);
+//}
+//public void setStage2() {
+//	monster1Btn.setIcon(monster1);
+//}
+//public void setStage2() {
+//	monster2Btn.setIcon(monster2);
+//}
+//public void setStage2() {
+//	monster3Btn.setIcon(monster3);
+//}
+//public void setStage2() {
+//	bossMonster2Btn.setIcon(bossMonster2);
+//}
+//public void setStage3() {
+//	monster1Btn.setIcon(monster1);
+//}
+//public void setStage3() {
+//	monster2Btn.setIcon(monster2);
+//}
+//public void setStage3() {
+//	monster3Btn.setIcon(monster3);
+//}
+//public void setStage3() {
+//	bossMonster3Btn.setIcon(bossMonster3);
+//}
 
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, StagePanel stagePanel, MainPanel mainPanel,
 			BattlePanel battlePanel, AdminPanel adminPanel, StorePanel storePanel) {
