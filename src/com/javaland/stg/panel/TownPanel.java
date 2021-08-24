@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.javaland.stg.controller.CharacterUpdateController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김지혁 담당 패널 */
@@ -31,10 +32,11 @@ public class TownPanel extends JPanel{
 	private ImageIcon restImg = new ImageIcon("image/RestBtn.PNG");
 	private ImageIcon marketImg = new ImageIcon("image/StoreBtn.png");
 	private ImageIcon exitImg = new ImageIcon("image/ExitBtn1.png");
-	private ImageIcon yesImg = new ImageIcon("image/loginBtn.png");
-	private ImageIcon noImg = new ImageIcon("image/loginBtn.png");
+	private ImageIcon yesImg = new ImageIcon("image/yes.png");
+	private ImageIcon noImg = new ImageIcon("image/no.png");
 	private ImageIcon fullHpImg = new ImageIcon("image/Fullhp.png");
 
+	private CharacterUpdateController characterUpdate = new CharacterUpdateController();
 	
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
@@ -122,7 +124,7 @@ public class TownPanel extends JPanel{
 		
 		/* 나가기 버튼 */
 		exitButton = new JButton();
-		exitButton.setBounds(1490, 10, 101, 90);
+		exitButton.setBounds(1400, 25, 101, 90);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
 		exitButton.setFocusPainted(false);
@@ -137,7 +139,6 @@ public class TownPanel extends JPanel{
 		
 		/* 캐릭터 라벨 */
 		characterLabel = new JLabel();
-//		characterLabel.setVisible(true);
 		characterLabel.setIcon(characterImg);
 		characterLabel.setBounds(445, 380, 420, 547);
 		
@@ -155,7 +156,7 @@ public class TownPanel extends JPanel{
 		
 		/* 예 버튼 */
 		yesButton = new JButton();
-		yesButton.setBounds(450, 570, 230, 100);
+		yesButton.setBounds(470, 570, 230, 64);
 		yesButton.setBorderPainted(false);
 		yesButton.setContentAreaFilled(false);
 		yesButton.setFocusPainted(false);
@@ -165,7 +166,7 @@ public class TownPanel extends JPanel{
 		
 		/* 아니오 버튼 */
 		noButton = new JButton();
-		noButton.setBounds(800, 570, 230, 100);
+		noButton.setBounds(800, 570, 230, 64);
 		noButton.setBorderPainted(false);
 		noButton.setContentAreaFilled(false);
 		noButton.setFocusPainted(false);
@@ -210,34 +211,6 @@ public class TownPanel extends JPanel{
 	
 	public void eventStart() {
 		
-		storeButton.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
-		
 		nextButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -253,6 +226,7 @@ public class TownPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				/* 휴식 버튼 클릭 시 체력 회복 */
 				character.setHp(character.getMaxHp());
+				characterUpdate.updatePlayer(character);
 				restPanel.setVisible(true);
 				townPanel1.setVisible(false);
 				
@@ -312,7 +286,65 @@ public class TownPanel extends JPanel{
 				blockPanel.setVisible(false);
 			}
 		});
+		
+		yesButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				yesButton.setIcon(new ImageIcon("image/yes.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				yesButton.setIcon(new ImageIcon("image/yes_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		noButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				noButton.setIcon(new ImageIcon("image/no.png"));
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				noButton.setIcon(new ImageIcon("image/no_Clicked.png"));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 	}
+	
+	
 	
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
