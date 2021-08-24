@@ -455,9 +455,10 @@ public class MainPanel extends JPanel{
 					
 //					battlePanel.setCharacter(character);				
 //					townPanel.setCharacter(character);				
-//					stagePanel.setCharacter(character);		
+//					stagePanel.setCharacter(character);	
 					
 					loginPanel.setVisible(false);
+					
 				} else if (loginResult == 0) {							// 비밀번호 불일치
 					popUpPanel.setVisible(true);
 					loginFaillabel.setVisible(true);
@@ -616,6 +617,9 @@ public class MainPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				popUpPanel.setVisible(false);
 				okBtn.setVisible(false);
+				
+				mainPanel.setVisible(false);
+				townPanel.setVisible(true);
 			}
 		});
 	
