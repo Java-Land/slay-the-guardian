@@ -1,7 +1,9 @@
 package com.javaland.stg.model.service;
 
 import static com.javaland.stg.common.JDBCTemplate.getConnection;
+import static com.javaland.stg.common.JDBCTemplate.rollback;
 import static com.javaland.stg.common.JDBCTemplate.close;
+import static com.javaland.stg.common.JDBCTemplate.commit;
 
 import java.sql.Connection;
 
@@ -17,8 +19,15 @@ public class CharacterUpdateService {
 		
 		int result = characterUpdateDAO.characterUpdateService(con, character);
 		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
 		close(con);
 		
-		return 0;
+		return result;
 	}
+	
 }

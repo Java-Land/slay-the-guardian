@@ -150,6 +150,14 @@ public class Monster {
 		}
 	}
 	
+	public void attackCharacter(CharacterDTO character) {
+		if(this.sp - character.getDp() > 0) {
+			character.setHp(character.getHp() - (this.sp - character.getDp()));
+		} else {
+			
+		}
+	}
+	
 	public void reSpawn() {
 		this.hp = this.maxHp;
 	}

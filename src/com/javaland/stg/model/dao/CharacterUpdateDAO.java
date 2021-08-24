@@ -28,7 +28,6 @@ public class CharacterUpdateDAO {
 	public int characterUpdateService(Connection con, CharacterDTO character) {
 		
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		
 		String query = prop.getProperty("characterUpdateService");
 		
@@ -36,36 +35,32 @@ public class CharacterUpdateDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, character.getId());
-			pstmt.setInt(2, character.getCode());
 			
-			rset = pstmt.executeQuery();
+			pstmt.setInt(1, character.getHp());
+			pstmt.setInt(2, character.getMaxHp());
+			pstmt.setInt(3, character.getSp());
+			pstmt.setInt(4, character.getDp());
+			pstmt.setInt(5, character.getGold());
+			pstmt.setInt(6, character.getExp());
+			pstmt.setInt(7, character.getLevel());
+			pstmt.setDate(8, character.getPlayTime());
+			pstmt.setString(9, character.getLiveYN());
+			pstmt.setString(10, character.getStage1ClearYN());
+			pstmt.setString(11, character.getStage2ClearYN());
+			pstmt.setString(12, character.getId());
+			pstmt.setInt(13, character.getCode());
 			
-			
-			if(rset.next()) {
-				character.setCode(rset.getInt("PLAYER_CODE"));
-				character.setId(rset.getString("PLAYER_ID"));
-				character.setHp(rset.getInt("PLAYER_HP"));
-				character.setMaxHp(rset.getInt("PLAYER_MAX_HP"));
-				character.setSp(rset.getInt("PLAYER_SP"));
-				character.setDp(rset.getInt("PLAYER_DP"));
-				character.setGold(rset.getInt("PLAYER_GOLD"));
-				character.setExp(rset.getInt("PLAYER_EXP"));
-				character.setLevel(rset.getInt("PLAYER_Level"));
-				character.setPlayTime(rset.getDate("PLAY_TIME"));
-				character.setLiveYN(rset.getString("PLAYER_LIVE_YN"));
-				character.setStage1ClearYN(rset.getString("STAGE1_CLEAR_YN"));
-				character.setStage2ClearYN(rset.getString("STAGE2_CLEAR_YN"));
-			}
+			result = pstmt.executeUpdate();
+						
 			result = 1;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
 			close(pstmt);
 		}
 		
 		return result;
 	}
+	
 }

@@ -50,9 +50,25 @@ public class CharacterDTO implements Serializable{
 
 	public void attackMonster(Monster monster) {
 		if(this.sp - monster.getDp() > 0) {
-			monster.setHp(monster.getHp() - this.sp - monster.getDp());
+			monster.setHp(monster.getHp() - (this.sp - monster.getDp()));
 		} else {
 			
+		}
+	}
+	
+	public void victoryBattle(Monster enemy) {
+		this.exp += enemy.getDropExp();
+		this.gold += enemy.getDropGold();
+	}
+	
+	public void checkLevelUp() {
+		if(exp > (level * 100)) {
+			maxHp += 100;
+			hp = maxHp;
+			sp += 10;
+			dp += 5;
+			level += 1;
+			exp = 0;
 		}
 	}
 	
