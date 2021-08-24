@@ -70,6 +70,9 @@ public class BattlePanel extends JPanel {
 	private JLabel characterHpLabel;
 	private JLabel enemyHpLabel;
 	private JLabel enemyName;
+	private JLabel turnInfo;
+	
+	private CharacterController characterController = new CharacterController();
 
 	public BattlePanel() {
 		battlePanel = this;
@@ -123,7 +126,7 @@ public class BattlePanel extends JPanel {
 		characterHpLabel = new JLabel();
 		characterHpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		characterHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
-		characterHpLabel.setBounds(360, 450, 100, 30);
+		characterHpLabel.setBounds(260, 450, 300, 30);
 		characterHpLabel.setForeground(Color.RED);
 		battlePanel.add(characterHpLabel);
 
@@ -131,7 +134,7 @@ public class BattlePanel extends JPanel {
 		enemyHpLabel = new JLabel();
 		enemyHpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		enemyHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
-		enemyHpLabel.setBounds(1250, 170, 100, 30);
+		enemyHpLabel.setBounds(1250, 170, 300, 30);
 		enemyHpLabel.setForeground(Color.RED);
 		battlePanel.add(enemyHpLabel);
 
@@ -143,7 +146,22 @@ public class BattlePanel extends JPanel {
 		enemyName.setForeground(Color.WHITE);
 		battlePanel.add(enemyName);
 		
-		character = new CharacterDTO();
+		/* 현재 턴 라벨 */
+		turnInfo = new JLabel("<== 캐릭터 턴");
+		turnInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		turnInfo.setFont(new Font("Kreon", Font.BOLD, 30));
+		turnInfo.setBounds(475, 500, 250, 30);
+		turnInfo.setForeground(Color.WHITE);
+		battlePanel.add(turnInfo);
+		
+		character = characterController.searchPlayerById("user01");
+		character.setHp(1000);
+		character.setMaxHp(1000);
+		character.setSp(3);
+		character.setDp(0);
+		character.setLevel(1);
+		character.setGold(200);
+		character.setExp(0);
 		characterInforefresh();
 		startBattle(1,2);
 		
@@ -155,6 +173,16 @@ public class BattlePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				character.attackMonster(nowEnemy);
+				monsterInfoRefresh();
+				if(nowEnemy.getHp() <= 0) {
+					character.victoryBattle(nowEnemy);
+					character.checkLevelUp();
+//					여기에 캐릭터 정보 업데이트 하는 컨트롤러
+					battlePanel.setVisible(false);
+					dungeonPanel.setVisible(true);
+				} else {
+					monsterTurnStart(1);
+				}
 			}
 		});
 
@@ -162,6 +190,7 @@ public class BattlePanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				monsterTurnStart(2);
 			}
 		});
 
@@ -193,12 +222,51 @@ public class BattlePanel extends JPanel {
 		enemyHpLabel.setBounds(monster.getImgX(), monster.getImgY() - 40, monster.getImg().getWidth(null), 30);
 		nowEnemy = monster;
 	}
+	
+	public void monsterInfoRefresh() {
+		enemyHpLabel.setText(nowEnemy.getHp() + "/" + nowEnemy.getMaxHp());
+	}
 
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
 		goldLabel.setText(character.getGold() + "");
 	}
 
+	public void monsterTurnStart(int tactics) {
+		strikeButton.setEnabled(false);
+		defenseButton.setEnabled(false);
+		escapeButton.setEnabled(false);
+		turnInfo.setText("몬스터 턴===>");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if(tactics == 1) {
+					nowEnemy.attackCharacter(character);
+				}
+				turnInfo.setText("<===캐릭터 턴");
+				strikeButton.setEnabled(true);
+				defenseButton.setEnabled(true);
+				escapeButton.setEnabled(true);
+				characterInforefresh();
+				if(character.getHp() <= 0) {
+					character.setLiveYN("N");
+//					캐릭터 정보 업데이트 하는 컨트롤러
+//					새로운 캐릭터 생성하는 컨트롤러
+					character = characterController.searchPlayerById(character.getId());
+					townPanel.setCharacter(character);
+					battlePanel.setVisible(false);
+					townPanel.setVisible(true);
+				}
+			}
+		}).start();
+		
+	}
+	
 	public void startBattle(int stageNo, int dungeonNo) {
 		switch(stageNo) {
 		case 1:
@@ -254,6 +322,7 @@ public class BattlePanel extends JPanel {
 			break;
 		}
 	}
+	
 
 	public void setCharacter(CharacterDTO character) {
 		this.character = character;

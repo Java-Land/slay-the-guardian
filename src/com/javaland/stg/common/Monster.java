@@ -4,6 +4,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import com.javaland.stg.model.dto.CharacterDTO;
+
 public class Monster {
 	
 	private Image img;
@@ -145,6 +147,14 @@ public class Monster {
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
+		}
+	}
+	
+	public void attackCharacter(CharacterDTO character) {
+		if(this.sp - character.getDp() > 0) {
+			character.setHp(character.getHp() - (this.sp - character.getDp()));
+		} else {
+			
 		}
 	}
 	
