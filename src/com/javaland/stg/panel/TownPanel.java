@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.javaland.stg.controller.CharacterController;
 import com.javaland.stg.controller.CharacterUpdateController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
@@ -36,6 +37,7 @@ public class TownPanel extends JPanel{
 	private ImageIcon fullHpImg = new ImageIcon("image/Fullhp.png");
 
 	private CharacterUpdateController characterUpdate = new CharacterUpdateController();
+	private CharacterController characterController = new CharacterController();
 	
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
@@ -201,9 +203,24 @@ public class TownPanel extends JPanel{
 		restPanel.add(fullHpLabel);
 		restPanel.add(exitButton2);
 		
+		character.setHp(1000);
+		character.setMaxHp(1000);
+		character.setSp(3);
+		character.setDp(0);
+		character.setLevel(1);
+		character.setGold(200);
+		character.setExp(0);
 		
 		
 		character = new CharacterDTO();
+		character = characterController.searchPlayerById("user01");
+		character.setHp(1000);
+		character.setMaxHp(1000);
+		character.setSp(3);
+		character.setDp(0);
+		character.setLevel(1);
+		character.setGold(200);
+		character.setExp(0);
 		characterInforefresh();
 	}
 	
@@ -348,6 +365,11 @@ public class TownPanel extends JPanel{
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
 		goldLabel.setText(character.getGold() + "");
+	}
+	
+	public void setCharacterTown(CharacterDTO character) {
+		this.character = character;
+		characterInforefresh();
 	}
 	
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
