@@ -203,25 +203,17 @@ public class TownPanel extends JPanel{
 		restPanel.add(fullHpLabel);
 		restPanel.add(exitButton2);
 		
-		character.setHp(1000);
-		character.setMaxHp(1000);
-		character.setSp(3);
-		character.setDp(0);
-		character.setLevel(1);
-		character.setGold(200);
-		character.setExp(0);
-		
-		
 		character = new CharacterDTO();
 		character = characterController.searchPlayerById("user01");
-		character.setHp(1000);
-		character.setMaxHp(1000);
+		character.setHp(100);
+		character.setMaxHp(100);
 		character.setSp(3);
 		character.setDp(0);
 		character.setLevel(1);
 		character.setGold(200);
 		character.setExp(0);
 		characterInforefresh();
+		this.setCharacter(character);
 	}
 	
 	
@@ -367,10 +359,6 @@ public class TownPanel extends JPanel{
 		goldLabel.setText(character.getGold() + "");
 	}
 	
-	public void setCharacterTown(CharacterDTO character) {
-		this.character = character;
-		characterInforefresh();
-	}
 	
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
 			         	  DungeonPanel dungeonPanel, BattlePanel battlePanel, AdminPanel adminPanel, StorePanel storePanel) {
