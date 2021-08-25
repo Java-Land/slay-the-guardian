@@ -25,6 +25,7 @@ import com.javaland.stg.controller.UserController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김종현 담당 패널 */
+
 public class MainPanel extends JPanel{
 	
 	private CharacterDTO character;
