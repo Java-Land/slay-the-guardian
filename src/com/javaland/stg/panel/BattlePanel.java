@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import com.javaland.stg.common.Monster;
 import com.javaland.stg.controller.CharacterController;
+import com.javaland.stg.controller.CharacterUpdateController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 황성연 담당 패널 */
@@ -73,6 +74,7 @@ public class BattlePanel extends JPanel {
 	private JLabel turnInfo;
 	
 	private CharacterController characterController = new CharacterController();
+	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
 
 	public BattlePanel() {
 		battlePanel = this;
@@ -154,16 +156,16 @@ public class BattlePanel extends JPanel {
 		turnInfo.setForeground(Color.WHITE);
 		battlePanel.add(turnInfo);
 		
-		character = characterController.searchPlayerById("user01");
-		character.setHp(1000);
-		character.setMaxHp(1000);
-		character.setSp(3);
-		character.setDp(0);
-		character.setLevel(1);
-		character.setGold(200);
-		character.setExp(0);
-		characterInforefresh();
-		startBattle(1,2);
+//		character = characterController.searchPlayerById("user01");
+//		character.setHp(1000);
+//		character.setMaxHp(1000);
+//		character.setSp(3);
+//		character.setDp(0);
+//		character.setLevel(1);
+//		character.setGold(200);
+//		character.setExp(0);
+//		characterInforefresh();
+//		startBattle(1,2);
 		
 	}
 
@@ -177,7 +179,12 @@ public class BattlePanel extends JPanel {
 				if(nowEnemy.getHp() <= 0) {
 					character.victoryBattle(nowEnemy);
 					character.checkLevelUp();
-//					여기에 캐릭터 정보 업데이트 하는 컨트롤러
+					if(nowEnemy.getName().equals("champion")) {
+						character.setStage1ClearYN("Y");
+					} else if (nowEnemy.getName().equals("timeEater")) {
+						character.setStage2ClearYN("Y");
+					}
+					characterUpdateController.updatePlayer(character);
 					battlePanel.setVisible(false);
 					dungeonPanel.setVisible(true);
 				} else {
@@ -255,7 +262,7 @@ public class BattlePanel extends JPanel {
 				characterInforefresh();
 				if(character.getHp() <= 0) {
 					character.setLiveYN("N");
-//					캐릭터 정보 업데이트 하는 컨트롤러
+					characterUpdateController.updatePlayer(character);
 //					새로운 캐릭터 생성하는 컨트롤러
 					character = characterController.searchPlayerById(character.getId());
 					townPanel.setCharacter(character);
@@ -321,6 +328,7 @@ public class BattlePanel extends JPanel {
 			}
 			break;
 		}
+		characterInforefresh();
 	}
 	
 
