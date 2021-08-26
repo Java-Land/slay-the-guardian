@@ -170,6 +170,12 @@ public class DungeonPanel extends JPanel {
 		int setBossStage;
 
 //		int stageNum()
+		
+		monster2Btn.setEnabled(false);
+		monster3Btn.setEnabled(false);
+		bossMonster1Btn.setEnabled(false);
+		
+		dungeonPanel.setVisible(false);
 
 	}
 
