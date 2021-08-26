@@ -77,6 +77,8 @@ public class StagePanel extends JPanel{
 		exitStageBtn.setContentAreaFilled(false);
 		exitStageBtn.setFocusPainted(false);
 		stagePanel.add(exitStageBtn);
+		
+		super.setVisible(false);
 	}
 	
 	public void eventStart() {
@@ -135,6 +137,12 @@ public class StagePanel extends JPanel{
 	      } else {
 	         stageBtn3.setEnabled(false);
 	      }		
+	}
+	
+	@Override
+	public void setVisible(boolean aFlag) {
+		super.setVisible(aFlag);
+		stageClearYN();
 	}
 	
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, MainPanel mainPanel,

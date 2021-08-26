@@ -52,6 +52,7 @@ public class StorePanel extends JPanel {
 //	itemButton.setIcon();
 	storePanel.add(itemButton);
 	
+	storePanel.setVisible(false);
 	}
 	public void eventStart() {
 //		
