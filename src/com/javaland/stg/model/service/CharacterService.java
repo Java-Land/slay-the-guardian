@@ -11,10 +11,10 @@ public class CharacterService {
 	
 	private CharacterDAO characterDAO = new CharacterDAO();
 
-	public CharacterDTO characterService(String id) {
+	public CharacterDTO searchPlayerById(String id) {
 		Connection con = getConnection();
 		
-		CharacterDTO character = characterDAO.characterService(con, id);
+		CharacterDTO character = characterDAO.searchPlayerById(con, id);
 		
 		close(con);
 		
