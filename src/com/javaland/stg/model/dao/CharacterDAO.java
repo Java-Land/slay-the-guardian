@@ -24,7 +24,7 @@ public class CharacterDAO {
 		}
 	}
 
-	public CharacterDTO characterService(Connection con, String id) {
+	public CharacterDTO searchPlayerById(Connection con, String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
