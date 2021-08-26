@@ -24,7 +24,8 @@ public class ScriptPanel extends JPanel{
 		this.setBounds(0, 0, 1600, 900);
 		this.setLayout(null);
 		this.setBackground(Color.BLACK);
-
+		
+		scriptPanel.setVisible(false);
 	}
 	
 	public void eventStart() {
