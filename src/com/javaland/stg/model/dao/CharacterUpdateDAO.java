@@ -47,8 +47,8 @@ public class CharacterUpdateDAO {
 			pstmt.setString(9, character.getLiveYN());
 			pstmt.setString(10, character.getStage1ClearYN());
 			pstmt.setString(11, character.getStage2ClearYN());
-			pstmt.setString(12, character.getId());
-			pstmt.setInt(13, character.getCode());
+			pstmt.setInt(12, character.getCode());
+			pstmt.setString(13, character.getId());
 			
 			result = pstmt.executeUpdate();
 						
