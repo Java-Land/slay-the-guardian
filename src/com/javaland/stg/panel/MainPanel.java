@@ -20,13 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.javaland.stg.controller.CharacterController;
 import com.javaland.stg.controller.UserController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김종현 담당 패널 */
+
 public class MainPanel extends JPanel{
 	
-	private CharacterDTO character = new CharacterDTO();
+	private CharacterDTO character;
+	private CharacterController characterController = new CharacterController();
 	private UserController userController = new UserController();
 	
 	Image backImg = new ImageIcon("image/MainPanelBackIMG.png").getImage();
@@ -453,11 +456,13 @@ public class MainPanel extends JPanel{
 					loginSuccesslabel.setVisible(true);
 					okBtn.setVisible(true);
 					
-//					battlePanel.setCharacter(character);				
-//					townPanel.setCharacter(character);				
-//					stagePanel.setCharacter(character);		
+					character = characterController.searchPlayerById(id);
+					battlePanel.setCharacter(character);				
+					townPanel.setCharacter(character);				
+					stagePanel.setCharacter(character);	
 					
 					loginPanel.setVisible(false);
+					
 				} else if (loginResult == 0) {							// 비밀번호 불일치
 					popUpPanel.setVisible(true);
 					loginFaillabel.setVisible(true);
@@ -616,6 +621,9 @@ public class MainPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				popUpPanel.setVisible(false);
 				okBtn.setVisible(false);
+				
+				mainPanel.setVisible(false);
+				townPanel.setVisible(true);
 			}
 		});
 	

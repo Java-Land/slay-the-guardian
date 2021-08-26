@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /* 이준한 담당 패널 */
 /* 푸쉬 시도 */
-/* 제발 되라 */
+/* 제발 되라ㅏ */
 public class DungeonPanel extends JPanel {
 
 	private Image backImg = new ImageIcon("image/DungeonPanelBackIMG.png").getImage();
@@ -170,6 +170,12 @@ public class DungeonPanel extends JPanel {
 		int setBossStage;
 
 //		int stageNum()
+		
+		monster2Btn.setEnabled(false);
+		monster3Btn.setEnabled(false);
+		bossMonster1Btn.setEnabled(false);
+		
+		dungeonPanel.setVisible(false);
 
 	}
 

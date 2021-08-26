@@ -205,7 +205,7 @@ public class TownPanel extends JPanel{
 		
 		
 		character = new CharacterDTO();
-		characterInforefresh();
+		super.setVisible(false);
 	}
 	
 	
@@ -349,6 +349,13 @@ public class TownPanel extends JPanel{
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
 		goldLabel.setText(character.getGold() + "");
+	}
+	
+	@Override
+	public void setVisible(boolean aFlag) {
+		super.setVisible(aFlag);
+		
+		characterInforefresh();
 	}
 	
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
