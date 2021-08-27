@@ -631,6 +631,7 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				popUpPanel.setVisible(false);
+				loginSuccesslabel.setVisible(false);
 				okBtn.setVisible(false);
 				
 				mainPanel.setVisible(false);
