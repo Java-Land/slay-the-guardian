@@ -38,6 +38,7 @@ public class CharacterService {
 		
 		close(con);
 		
+	//주석
 		return result;
 	}
 }
