@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.javaland.stg.model.dto.CharacterDTO;
+import com.javaland.stg.model.service.CharacterService;
 
 public class CharacterDAO {
 	
@@ -65,4 +66,20 @@ public class CharacterDAO {
 		return character;
 	}
 
+	public int characterInsertById(Connection con, String id) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("characterInsertById");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
