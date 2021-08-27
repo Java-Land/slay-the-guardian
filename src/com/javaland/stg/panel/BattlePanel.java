@@ -264,6 +264,7 @@ public class BattlePanel extends JPanel {
 					character.setLiveYN("N");
 					characterUpdateController.updatePlayer(character);
 //					새로운 캐릭터 생성하는 컨트롤러
+					characterController.characterInsertById(character.getId());
 					character = characterController.searchPlayerById(character.getId());
 					townPanel.setCharacter(character);
 					battlePanel.setVisible(false);
@@ -330,7 +331,6 @@ public class BattlePanel extends JPanel {
 		}
 		characterInforefresh();
 	}
-	
 
 	public void setCharacter(CharacterDTO character) {
 		this.character = character;
