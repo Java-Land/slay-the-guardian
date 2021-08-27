@@ -126,6 +126,12 @@ public class AdminPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				adminPanel.setVisible(false);
 				mainPanel.setVisible(true);
+				mainPanel.loginPanel.setVisible(true);
+				
+				/* 아이디필드 & 패스워드 필드 초기화 */
+				mainPanel.idField.setText("");
+				mainPanel.idField.requestFocus();
+				mainPanel.pwField.setText("");
 			}
 		});
 		
