@@ -111,7 +111,7 @@ public class TownPanel extends JPanel{
 		characterHpLabel = new JLabel();
 		characterHpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		characterHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
-		characterHpLabel.setBounds(555, 500, 300, 30);
+		characterHpLabel.setBounds(445, 510, 300, 30);
 		characterHpLabel.setForeground(Color.RED);
 		
 		/* 상점 버튼 */
@@ -274,6 +274,8 @@ public class TownPanel extends JPanel{
 				
 				townPanel.setVisible(false);
 				blockPanel.setVisible(false);
+				mainPanel.setVisible(true);
+				
 			}
 		});
 		
