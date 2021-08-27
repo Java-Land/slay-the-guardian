@@ -1,7 +1,10 @@
 package com.javaland.stg.model.service;
 
 import static com.javaland.stg.common.JDBCTemplate.getConnection;
+import static com.javaland.stg.common.JDBCTemplate.rollback;
 import static com.javaland.stg.common.JDBCTemplate.close;
+import static com.javaland.stg.common.JDBCTemplate.commit;
+
 import java.sql.Connection;
 
 import com.javaland.stg.model.dao.CharacterDAO;
@@ -21,4 +24,20 @@ public class CharacterService {
 		return character;
 	}
 
+	public int characterInsertById(String id) {
+		
+		Connection con = getConnection();
+		
+		int result = characterDAO.characterInsertById(con,id);
+		
+		if(result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
 }

@@ -39,6 +39,21 @@
 		 WHERE PLAYER_CODE = ?
 		   AND PLAYER_ID = ?
 	</entry>
+	<entry key="characterInsertById">
+		INSERT
+		  INTO PLAYER_INFO A
+		  (
+		    A.PLAYER_CODE
+		  , A.PLAYER_ID
+		  , A.PLAY_TIME
+		  )
+		  VALUES
+		  (
+		    SEQ_LOGIN_NO.NEXTVAL
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
 
 </properties>
 
