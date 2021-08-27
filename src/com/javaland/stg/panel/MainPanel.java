@@ -75,13 +75,13 @@ public class MainPanel extends JPanel{
 	private JLabel registFailNoPwdlabel;
 	private JLabel registFailWrongPwdlabel;
 	private JLabel registFailDupIdlabel;
-	private JTextField idField;
+	public JTextField idField;
 	private JTextField idField2;
-	private JPasswordField pwField;
+	public JPasswordField pwField;
 	private JPasswordField pwField2;
 	private JPasswordField confirmPwField;
 	
-	private JPanel loginPanel;
+	public JPanel loginPanel;
 	private JPanel registPanel;
 	private JPanel popUpPanel;
 	
@@ -444,36 +444,42 @@ public class MainPanel extends JPanel{
 				String id = idField.getText();
 				String pw = Arrays.toString(pwField.getPassword());
 				
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("ID", id);
-				map.put("PW", pw);
-				
-				int loginResult = userController.loginSuccess(map);
-				
-				if (loginResult == 1) {									// 로그인 성공
-					popUpPanel.setVisible(true);
-					loginSuccesslabel.setVisible(true);
-					okBtn.setVisible(true);
-					
-					character = characterController.searchPlayerById(id);
-					battlePanel.setCharacter(character);				
-					townPanel.setCharacter(character);				
-					stagePanel.setCharacter(character);	
-					
-					loginPanel.setVisible(false);
-					
-				} else if (loginResult == 0) {							// 비밀번호 불일치
-					popUpPanel.setVisible(true);
-					loginFaillabel.setVisible(true);
-					okBtn2.setVisible(true);
-				} else if (loginResult == -1) {							// 아이디 없음
-					popUpPanel.setVisible(true);
-					loginFaillabel.setVisible(true);
-					okBtn2.setVisible(true);
+				/* 관리자로 로그인 */
+				if (id.equals("root") && pw.equals("[r, o, o, t]")) {
+					mainPanel.setVisible(false);
+					adminPanel.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "DB 오류");
-				}
+					
+					/* 일반 사용자로 로그인 */
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("ID", id);
+					map.put("PW", pw);
+					
+					int loginResult = userController.loginSuccess(map);
+					if (loginResult == 1) {									// 로그인 성공
+						popUpPanel.setVisible(true);
+						loginSuccesslabel.setVisible(true);
+						okBtn.setVisible(true);
+						
+						character = characterController.searchPlayerById(id);
+						battlePanel.setCharacter(character);				
+						townPanel.setCharacter(character);				
+						stagePanel.setCharacter(character);	
+						
+						loginPanel.setVisible(false);
+					} else if (loginResult == 0) {							// 비밀번호 불일치
+						popUpPanel.setVisible(true);
+						loginFaillabel.setVisible(true);
+						okBtn2.setVisible(true);
+					} else if (loginResult == -1) {							// 아이디 없음
+						popUpPanel.setVisible(true);
+						loginFaillabel.setVisible(true);
+						okBtn2.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null, "DB 오류");
+					}
 
+				} // 전체 if문 종료
 			}
 		});
 	
@@ -484,6 +490,12 @@ public class MainPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				loginPanel.setVisible(false);
 				registPanel.setVisible(true);
+				
+				/* 아이디 필드 및 패스워드 필드 초기화 */
+				idField2.setText("");
+				idField2.requestFocus();
+				pwField2.setText("");
+				confirmPwField.setText("");
 				
 			}
 		});
@@ -500,19 +512,19 @@ public class MainPanel extends JPanel{
 				
 				int sameIdResult = userController.selectSameId(id);
 				
-				
 				if (pw.equals(confirmPw) && pw != "[]" && sameIdResult != -1) {			// 회원 가입 성공
 					Map<String, String> map = new HashMap<>();
 					map.put("ID", id);
 					map.put("PW", pw);
 					
+					/* PLAYER 테이블에 유저 정보 등록 */
 					userController.registPlayer(map);
-					int infoResult = userController.registInfo(map);
+					/* PLAYER_INFO 테이블에 유저 정보 등록 */
+					userController.registInfo(map);
 					
 					popUpPanel.setVisible(true);
 					registSuccesslabel.setVisible(true);
 					registOkBtn.setVisible(true);
-					
 				} else if (pw == "[]") {												// 비밀번호 미입력
 					popUpPanel.setVisible(true);
 					registFailNoPwdlabel.setVisible(true);
@@ -623,6 +635,7 @@ public class MainPanel extends JPanel{
 				
 				mainPanel.setVisible(false);
 				townPanel.setVisible(true);
+				townPanel.townPanel1.setVisible(true);
 			}
 		});
 	

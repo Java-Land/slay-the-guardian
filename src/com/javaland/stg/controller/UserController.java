@@ -15,7 +15,7 @@ public class UserController {
 		userDTO.setUserId(requestmap.get("ID"));
 		userDTO.setUserPwd(requestmap.get("PW"));
 		
-		int registResult = userService.registPlayer(userDTO);
+		userService.registPlayer(userDTO);
 		
 	}
 
@@ -31,15 +31,13 @@ public class UserController {
 	}
 	
 
-	public int registInfo(Map<String, String> requestmap) {
+	public void registInfo(Map<String, String> requestmap) {
 		UserDTO userDTO = new UserDTO();
 		
 		userDTO.setUserId(requestmap.get("ID"));
 		userDTO.setUserPwd(requestmap.get("PW"));
 		
-		int result = userService.insertPlayerInfo(userDTO);
-		
-		return result;
+		userService.insertPlayerInfo(userDTO);
 	}
 
 	public int selectSameId(String id) {
@@ -52,5 +50,4 @@ public class UserController {
 		return result;
 	}
 
-	/* */
 }

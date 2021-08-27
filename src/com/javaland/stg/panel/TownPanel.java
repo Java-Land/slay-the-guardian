@@ -50,7 +50,7 @@ public class TownPanel extends JPanel{
 	private CharacterDTO character;
 	
 	private JPanel blockPanel;
-	private JPanel townPanel1;
+	public JPanel townPanel1;
 	private JPanel restPanel;
 	
 	private JLabel goldLabel;
@@ -274,6 +274,13 @@ public class TownPanel extends JPanel{
 				
 				townPanel.setVisible(false);
 				blockPanel.setVisible(false);
+				
+				/* 메인 패널로 이동 */
+				mainPanel.setVisible(true);
+				mainPanel.loginPanel.setVisible(true);
+				mainPanel.idField.setText("");
+				mainPanel.idField.requestFocus();
+				mainPanel.pwField.setText("");
 			}
 		});
 		
