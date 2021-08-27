@@ -21,11 +21,10 @@ import com.javaland.stg.controller.CharacterUpdateController;
 import com.javaland.stg.model.dto.CharacterDTO;
 
 /* 김지혁 담당 패널 */
-/* 푸쉬 다시 */
 public class TownPanel extends JPanel{
 	
 	Image backImg = new ImageIcon("image/TownPanelBackIMG.png").getImage();
-	Image infoImg = new ImageIcon("image/BattleInfo.png").getImage();
+	private ImageIcon goldImg = new ImageIcon("image/BattleInfo.png");
 	private ImageIcon characterImg = new ImageIcon("image/Character.png");
 	private ImageIcon blockImg = new ImageIcon("image/Block.png");
 	private ImageIcon nextImg = new ImageIcon("image/NextBtn.png");
@@ -50,7 +49,7 @@ public class TownPanel extends JPanel{
 	private CharacterDTO character;
 	
 	private JPanel blockPanel;
-	private JPanel townPanel1;
+	public JPanel townPanel1;
 	private JPanel restPanel;
 	
 	private JLabel goldLabel;
@@ -60,6 +59,7 @@ public class TownPanel extends JPanel{
 	private JLabel blockLabel;
 	private JLabel characterLabel;
 	private JLabel fullHpLabel;
+	private JLabel infoLabel;
 	
 	private JButton nextButton;
 	private JButton restButton;
@@ -111,7 +111,7 @@ public class TownPanel extends JPanel{
 		characterHpLabel = new JLabel();
 		characterHpLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		characterHpLabel.setFont(new Font("Kreon", Font.PLAIN, 30));
-		characterHpLabel.setBounds(555, 500, 100, 30);
+		characterHpLabel.setBounds(460, 510, 300, 30);
 		characterHpLabel.setForeground(Color.RED);
 		
 		/* 상점 버튼 */
@@ -137,6 +137,11 @@ public class TownPanel extends JPanel{
 		goldLabel.setBounds(170, 13, 200, 50);
 		goldLabel.setForeground(new Color(188, 191, 42));
 		
+		/* 정보 라벨 */
+		infoLabel = new JLabel();
+		infoLabel.setBounds(0, 10, 1250, 50);
+		infoLabel.setIcon(goldImg);
+		
 		/* 캐릭터 라벨 */
 		characterLabel = new JLabel();
 		characterLabel.setIcon(characterImg);
@@ -161,8 +166,6 @@ public class TownPanel extends JPanel{
 		yesButton.setContentAreaFilled(false);
 		yesButton.setFocusPainted(false);
 		yesButton.setIcon(yesImg);
-		
-		
 		
 		/* 아니오 버튼 */
 		noButton = new JButton();
@@ -198,14 +201,13 @@ public class TownPanel extends JPanel{
 		townPanel1.add(characterHpLabel);
 		townPanel1.add(goldLabel);
 		townPanel1.add(characterLabel);
+		townPanel1.add(infoLabel);
 		
 		restPanel.add(fullHpLabel);
 		restPanel.add(exitButton2);
-		
-		
-		
+				
 		character = new CharacterDTO();
-		characterInforefresh();
+		super.setVisible(false);
 	}
 	
 	
@@ -274,6 +276,13 @@ public class TownPanel extends JPanel{
 				
 				townPanel.setVisible(false);
 				blockPanel.setVisible(false);
+				
+				/* 메인 패널로 이동 */
+				mainPanel.setVisible(true);
+				mainPanel.loginPanel.setVisible(true);
+				mainPanel.idField.setText("");
+				mainPanel.idField.requestFocus();
+				mainPanel.pwField.setText("");
 			}
 		});
 		
@@ -351,6 +360,13 @@ public class TownPanel extends JPanel{
 		goldLabel.setText(character.getGold() + "");
 	}
 	
+	@Override
+	public void setVisible(boolean aFlag) {
+		super.setVisible(aFlag);
+		
+		characterInforefresh();
+	}
+	
 	public void panelInit(ScriptPanel scriptPanel, MainPanel mainPanel, StagePanel stagePanel,
 			         	  DungeonPanel dungeonPanel, BattlePanel battlePanel, AdminPanel adminPanel, StorePanel storePanel) {
 		this.scriptPanel = scriptPanel;
@@ -372,7 +388,6 @@ public class TownPanel extends JPanel{
 		super.paintComponent(g);
 		
 		g.drawImage(backImg, 0, 0, townPanel);
-		g.drawImage(infoImg, 0, 10, townPanel);
 
 	}
 	
