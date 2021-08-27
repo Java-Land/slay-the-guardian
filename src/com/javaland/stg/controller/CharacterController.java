@@ -9,7 +9,7 @@ import com.javaland.stg.model.service.CharacterService;
 	
 	public CharacterDTO searchPlayerById(String id) {
 		
-		CharacterDTO character = characterService.characterService(id);
+		CharacterDTO character = characterService.searchPlayerById(id);
 		
 		return character;
 	}
