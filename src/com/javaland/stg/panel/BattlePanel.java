@@ -18,9 +18,7 @@ import javax.swing.SwingConstants;
 import com.javaland.stg.common.Monster;
 import com.javaland.stg.controller.CharacterController;
 import com.javaland.stg.controller.CharacterUpdateController;
-import com.javaland.stg.controller.UserController;
 import com.javaland.stg.model.dto.CharacterDTO;
-import com.javaland.stg.model.dto.UserDTO;
 
 /* 황성연 담당 패널 */
 public class BattlePanel extends JPanel {
@@ -74,10 +72,15 @@ public class BattlePanel extends JPanel {
 	private JLabel enemyHpLabel;
 	private JLabel enemyName;
 	private JLabel turnInfo;
+	private JLabel characterSp;
+	private JLabel characterDp;
+	private JLabel characterLevel;
+	private JLabel characterExp;
+	private JLabel MonsterSp;
+	private JLabel MonsterDp;
 	
 	private CharacterController characterController = new CharacterController();
 	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
-	private UserController userController = new UserController();
 
 	public BattlePanel() {
 		battlePanel = this;
@@ -155,9 +158,59 @@ public class BattlePanel extends JPanel {
 		turnInfo = new JLabel("<== 캐릭터 턴");
 		turnInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		turnInfo.setFont(new Font("Kreon", Font.BOLD, 30));
-		turnInfo.setBounds(475, 500, 250, 30);
+		turnInfo.setBounds(700, 300, 250, 30);
 		turnInfo.setForeground(Color.WHITE);
 		battlePanel.add(turnInfo);
+		
+		/* 캐릭터 공격력 라벨 */
+		characterSp = new JLabel();
+		characterSp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterSp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterSp.setBounds(300, 700, 400, 30);
+		characterSp.setForeground(Color.WHITE);
+		battlePanel.add(characterSp);
+		
+		/* 캐릭터 방어력 라벨 */
+		characterDp = new JLabel();
+		characterDp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterDp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterDp.setBounds(300, 730, 400, 30);
+		characterDp.setForeground(Color.WHITE);
+		battlePanel.add(characterDp);
+		
+		/* 캐릭터 레벨 라벨 */
+		characterLevel = new JLabel();
+		characterLevel.setHorizontalAlignment(SwingConstants.LEFT);
+		characterLevel.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterLevel.setBounds(300, 760, 400, 30);
+		characterLevel.setForeground(Color.WHITE);
+		battlePanel.add(characterLevel);
+		
+		/* 캐릭터 레벨 라벨 */
+		characterExp = new JLabel();
+		characterExp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterExp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterExp.setBounds(300, 790, 400, 30);
+		characterExp.setForeground(Color.WHITE);
+		battlePanel.add(characterExp);
+		
+		/* 캐릭터 공격력 라벨 */
+		MonsterSp = new JLabel();
+		MonsterSp.setHorizontalAlignment(SwingConstants.LEFT);
+		MonsterSp.setFont(new Font("Kreon", Font.BOLD, 30));
+		MonsterSp.setBounds(800, 700, 400, 30);
+		MonsterSp.setForeground(Color.WHITE);
+		battlePanel.add(MonsterSp);
+		
+		/* 캐릭터 방어력 라벨 */
+		MonsterDp = new JLabel();
+		MonsterDp.setHorizontalAlignment(SwingConstants.LEFT);
+		MonsterDp.setFont(new Font("Kreon", Font.BOLD, 30));
+		MonsterDp.setBounds(800, 730, 400, 30);
+		MonsterDp.setForeground(Color.WHITE);
+		battlePanel.add(characterDp);
+		
+		super.setVisible(false);
 		
 //		character = characterController.searchPlayerById("user01");
 //		character.setHp(1000);
@@ -168,9 +221,8 @@ public class BattlePanel extends JPanel {
 //		character.setGold(200);
 //		character.setExp(0);
 //		characterInforefresh();
-//		startBattle(1,2);
+//		startBattle(1,4);
 		
-		super.setVisible(false);
 	}
 
 	public void eventStart() {
@@ -183,14 +235,58 @@ public class BattlePanel extends JPanel {
 				if(nowEnemy.getHp() <= 0) {
 					character.victoryBattle(nowEnemy);
 					character.checkLevelUp();
-					if(nowEnemy.getName().equals("champion")) {
+					if(nowEnemy.getName().equals("slime")) {
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("jawWorm")) {
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("gremlin")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("champion")) { 
 						character.setStage1ClearYN("Y");
-					} else if (nowEnemy.getName().equals("timeEater")) {
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("parasite")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("snecko")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("book")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("timeEater")) { 
+						dungeonPanel.setDungeon(1);
 						character.setStage2ClearYN("Y");
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("transienter")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("writhingMass")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("nemesis")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("theGuardian")) { 
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
 					}
 					characterUpdateController.updatePlayer(character);
-					battlePanel.setVisible(false);
-					dungeonPanel.setVisible(true);
 				} else {
 					monsterTurnStart(1);
 				}
@@ -241,6 +337,12 @@ public class BattlePanel extends JPanel {
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
 		goldLabel.setText(character.getGold() + "");
+		characterSp.setText("Character SP : " + character.getSp());
+		characterDp.setText("Character DP : " + character.getDp());
+		characterLevel.setText("Character Lv : " + character.getLevel());
+		characterExp.setText("Character Exp : " + character.getLevel() * 100 + "/" + character.getExp());
+		characterSp.setText(nowEnemy.getName() + " SP : " + character.getSp());
+		characterDp.setText(nowEnemy.getName() + " DP : " + character.getDp());
 	}
 
 	public void monsterTurnStart(int tactics) {
@@ -268,7 +370,7 @@ public class BattlePanel extends JPanel {
 					character.setLiveYN("N");
 					characterUpdateController.updatePlayer(character);
 //					새로운 캐릭터 생성하는 컨트롤러
-					userController.registPlayer(null);
+					characterController.characterInsertById(character.getId());
 					character = characterController.searchPlayerById(character.getId());
 					townPanel.setCharacter(character);
 					battlePanel.setVisible(false);
@@ -335,16 +437,9 @@ public class BattlePanel extends JPanel {
 		}
 		characterInforefresh();
 	}
-	
 
 	public void setCharacter(CharacterDTO character) {
 		this.character = character;
-		characterInforefresh();
-	}
-	
-	@Override
-	public void setVisible(boolean aFlag) {
-		super.setVisible(aFlag);
 		characterInforefresh();
 	}
 	
