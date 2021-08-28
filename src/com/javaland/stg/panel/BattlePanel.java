@@ -72,6 +72,12 @@ public class BattlePanel extends JPanel {
 	private JLabel enemyHpLabel;
 	private JLabel enemyName;
 	private JLabel turnInfo;
+	private JLabel characterSp;
+	private JLabel characterDp;
+	private JLabel characterLevel;
+	private JLabel characterExp;
+	private JLabel MonsterSp;
+	private JLabel MonsterDp;
 	
 	private CharacterController characterController = new CharacterController();
 	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
@@ -152,9 +158,57 @@ public class BattlePanel extends JPanel {
 		turnInfo = new JLabel("<== 캐릭터 턴");
 		turnInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		turnInfo.setFont(new Font("Kreon", Font.BOLD, 30));
-		turnInfo.setBounds(475, 500, 250, 30);
+		turnInfo.setBounds(700, 300, 250, 30);
 		turnInfo.setForeground(Color.WHITE);
 		battlePanel.add(turnInfo);
+		
+		/* 캐릭터 공격력 라벨 */
+		characterSp = new JLabel();
+		characterSp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterSp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterSp.setBounds(300, 700, 400, 30);
+		characterSp.setForeground(Color.WHITE);
+		battlePanel.add(characterSp);
+		
+		/* 캐릭터 방어력 라벨 */
+		characterDp = new JLabel();
+		characterDp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterDp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterDp.setBounds(300, 730, 400, 30);
+		characterDp.setForeground(Color.WHITE);
+		battlePanel.add(characterDp);
+		
+		/* 캐릭터 레벨 라벨 */
+		characterLevel = new JLabel();
+		characterLevel.setHorizontalAlignment(SwingConstants.LEFT);
+		characterLevel.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterLevel.setBounds(300, 760, 400, 30);
+		characterLevel.setForeground(Color.WHITE);
+		battlePanel.add(characterLevel);
+		
+		/* 캐릭터 레벨 라벨 */
+		characterExp = new JLabel();
+		characterExp.setHorizontalAlignment(SwingConstants.LEFT);
+		characterExp.setFont(new Font("Kreon", Font.BOLD, 30));
+		characterExp.setBounds(300, 790, 400, 30);
+		characterExp.setForeground(Color.WHITE);
+		battlePanel.add(characterExp);
+		
+		/* 캐릭터 공격력 라벨 */
+		MonsterSp = new JLabel();
+		MonsterSp.setHorizontalAlignment(SwingConstants.LEFT);
+		MonsterSp.setFont(new Font("Kreon", Font.BOLD, 30));
+		MonsterSp.setBounds(800, 700, 400, 30);
+		MonsterSp.setForeground(Color.WHITE);
+		battlePanel.add(MonsterSp);
+		
+		/* 캐릭터 방어력 라벨 */
+		MonsterDp = new JLabel();
+		MonsterDp.setHorizontalAlignment(SwingConstants.LEFT);
+		MonsterDp.setFont(new Font("Kreon", Font.BOLD, 30));
+		MonsterDp.setBounds(800, 730, 400, 30);
+		MonsterDp.setForeground(Color.WHITE);
+		battlePanel.add(characterDp);
 		
 		super.setVisible(false);
 		
@@ -167,7 +221,7 @@ public class BattlePanel extends JPanel {
 //		character.setGold(200);
 //		character.setExp(0);
 //		characterInforefresh();
-//		startBattle(1,2);
+//		startBattle(1,4);
 		
 	}
 
@@ -283,6 +337,12 @@ public class BattlePanel extends JPanel {
 	public void characterInforefresh() {
 		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
 		goldLabel.setText(character.getGold() + "");
+		characterSp.setText("Character SP : " + character.getSp());
+		characterDp.setText("Character DP : " + character.getDp());
+		characterLevel.setText("Character Lv : " + character.getLevel());
+		characterExp.setText("Character Exp : " + character.getLevel() * 100 + "/" + character.getExp());
+		characterSp.setText(nowEnemy.getName() + " SP : " + character.getSp());
+		characterDp.setText(nowEnemy.getName() + " DP : " + character.getDp());
 	}
 
 	public void monsterTurnStart(int tactics) {
