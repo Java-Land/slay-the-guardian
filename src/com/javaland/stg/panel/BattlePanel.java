@@ -208,7 +208,7 @@ public class BattlePanel extends JPanel {
 		monsterDp.setFont(new Font("Kreon", Font.BOLD, 30));
 		monsterDp.setBounds(800, 730, 400, 30);
 		monsterDp.setForeground(Color.WHITE);
-		battlePanel.add(characterDp);
+		battlePanel.add(monsterDp);
 		
 		monsterSpawn(slime);
 		
@@ -334,6 +334,8 @@ public class BattlePanel extends JPanel {
 	
 	public void monsterInfoRefresh() {
 		enemyHpLabel.setText(nowEnemy.getHp() + "/" + nowEnemy.getMaxHp());
+		monsterSp.setText(nowEnemy.getName() + " SP : " + nowEnemy.getSp());
+		monsterDp.setText(nowEnemy.getName() + " DP : " + nowEnemy.getDp());
 	}
 
 	public void characterInforefresh() {
@@ -343,8 +345,6 @@ public class BattlePanel extends JPanel {
 		characterDp.setText("Character DP : " + character.getDp());
 		characterLevel.setText("Character Lv : " + character.getLevel());
 		characterExp.setText("Character Exp : " + character.getLevel() * 100 + "/" + character.getExp());
-		characterSp.setText(nowEnemy.getName() + " SP : " + character.getSp());
-		characterDp.setText(nowEnemy.getName() + " DP : " + character.getDp());
 	}
 
 	public void monsterTurnStart(int tactics) {
@@ -437,6 +437,7 @@ public class BattlePanel extends JPanel {
 			}
 			break;
 		}
+		monsterInfoRefresh();
 		characterInforefresh();
 	}
 
