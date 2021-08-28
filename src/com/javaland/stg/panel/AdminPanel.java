@@ -116,7 +116,7 @@ public class AdminPanel extends JPanel{
 		this.add(saveBtn);
 		this.add(resultLb);
 		
-//		adminPanel.setVisible(false);
+		adminPanel.setVisible(false);
 	}
  
 	public void eventStart() {

@@ -156,6 +156,8 @@ public class BattlePanel extends JPanel {
 		turnInfo.setForeground(Color.WHITE);
 		battlePanel.add(turnInfo);
 		
+		super.setVisible(false);
+		
 //		character = characterController.searchPlayerById("user01");
 //		character.setHp(1000);
 //		character.setMaxHp(1000);
@@ -179,14 +181,58 @@ public class BattlePanel extends JPanel {
 				if(nowEnemy.getHp() <= 0) {
 					character.victoryBattle(nowEnemy);
 					character.checkLevelUp();
-					if(nowEnemy.getName().equals("champion")) {
+					if(nowEnemy.getName().equals("slime")) {
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("jawWorm")) {
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("gremlin")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("champion")) { 
 						character.setStage1ClearYN("Y");
-					} else if (nowEnemy.getName().equals("timeEater")) {
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("parasite")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("snecko")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("book")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("timeEater")) { 
+						dungeonPanel.setDungeon(1);
 						character.setStage2ClearYN("Y");
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("transienter")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("writhingMass")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("nemesis")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("theGuardian")) { 
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
 					}
 					characterUpdateController.updatePlayer(character);
-					battlePanel.setVisible(false);
-					dungeonPanel.setVisible(true);
 				} else {
 					monsterTurnStart(1);
 				}

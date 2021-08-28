@@ -199,6 +199,7 @@ public class DungeonPanel extends JPanel {
 			resultNum = 3;
 			break;
 		}
+		dungeonPanel.setDungeon(1);
 	}
 
 	public void eventStart() {
