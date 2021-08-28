@@ -76,8 +76,8 @@ public class BattlePanel extends JPanel {
 	private JLabel characterDp;
 	private JLabel characterLevel;
 	private JLabel characterExp;
-	private JLabel MonsterSp;
-	private JLabel MonsterDp;
+	private JLabel monsterSp;
+	private JLabel monsterDp;
 	
 	private CharacterController characterController = new CharacterController();
 	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
@@ -195,20 +195,22 @@ public class BattlePanel extends JPanel {
 		battlePanel.add(characterExp);
 		
 		/* 캐릭터 공격력 라벨 */
-		MonsterSp = new JLabel();
-		MonsterSp.setHorizontalAlignment(SwingConstants.LEFT);
-		MonsterSp.setFont(new Font("Kreon", Font.BOLD, 30));
-		MonsterSp.setBounds(800, 700, 400, 30);
-		MonsterSp.setForeground(Color.WHITE);
-		battlePanel.add(MonsterSp);
+		monsterSp = new JLabel();
+		monsterSp.setHorizontalAlignment(SwingConstants.LEFT);
+		monsterSp.setFont(new Font("Kreon", Font.BOLD, 30));
+		monsterSp.setBounds(800, 700, 400, 30);
+		monsterSp.setForeground(Color.WHITE);
+		battlePanel.add(monsterSp);
 		
 		/* 캐릭터 방어력 라벨 */
-		MonsterDp = new JLabel();
-		MonsterDp.setHorizontalAlignment(SwingConstants.LEFT);
-		MonsterDp.setFont(new Font("Kreon", Font.BOLD, 30));
-		MonsterDp.setBounds(800, 730, 400, 30);
-		MonsterDp.setForeground(Color.WHITE);
+		monsterDp = new JLabel();
+		monsterDp.setHorizontalAlignment(SwingConstants.LEFT);
+		monsterDp.setFont(new Font("Kreon", Font.BOLD, 30));
+		monsterDp.setBounds(800, 730, 400, 30);
+		monsterDp.setForeground(Color.WHITE);
 		battlePanel.add(characterDp);
+		
+		monsterSpawn(slime);
 		
 		super.setVisible(false);
 		
