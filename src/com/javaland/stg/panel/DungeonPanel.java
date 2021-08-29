@@ -209,9 +209,8 @@ public class DungeonPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				battlePanel.startBattle(mystageNum, 1);
 				dungeonPanel.setVisible(false);
-				townPanel.setVisible(true);
+				stagePanel.setVisible(true);
 
 			}
 		});
