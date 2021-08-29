@@ -33,7 +33,7 @@ public class Monster {
 			this.imgY = 600;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -43,7 +43,7 @@ public class Monster {
 			this.imgY = 580;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -53,7 +53,7 @@ public class Monster {
 			this.imgY = 350;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -63,7 +63,7 @@ public class Monster {
 			this.imgY = 200;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -73,7 +73,7 @@ public class Monster {
 			this.imgY = 500;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -83,7 +83,7 @@ public class Monster {
 			this.imgY = 450;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -93,7 +93,7 @@ public class Monster {
 			this.imgY = 350;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -103,7 +103,7 @@ public class Monster {
 			this.imgY = 200;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -113,7 +113,7 @@ public class Monster {
 			this.imgY = 360;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -123,7 +123,7 @@ public class Monster {
 			this.imgY = 500;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -133,7 +133,7 @@ public class Monster {
 			this.imgY = 320;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
@@ -143,7 +143,7 @@ public class Monster {
 			this.imgY = 250;
 			this.maxHp = 10;
 			this.dp = 2;
-			this.sp = 1;
+			this.sp = 7;
 			this.dropExp = 4;
 			this.dropGold = 15;
 			break;
