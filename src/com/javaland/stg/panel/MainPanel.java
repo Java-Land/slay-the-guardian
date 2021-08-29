@@ -112,36 +112,41 @@ public class MainPanel extends JPanel{
 		logoLabel.setIcon(logo);
 		logoLabel.setBounds(475, 50, 600, 350);
 		
-		/* ID, PW  */
+		/* ID 텍스트 필드*/
 		idField = new JTextField();
 		idField.setBounds(625, 430, 560, 110);
 		idField.setFont(new Font("Kreon", Font.BOLD, 40));
 		idField.setOpaque(false);
 		idField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		/* ID 이미지 텍스트 필드 */
 		idLabel = new JLabel();
 		idLabel.setIcon(idText);
 		idLabel.setBounds(525, 430, 560, 110);
 		
+		/* ID 이미지 라벨 */
 		idImgLabel = new JLabel();
 		idImgLabel.setIcon(idImg);
 		idImgLabel.setBounds(400, 450, 85, 65);
 		
+		/* PW 패스워드 필드 */
 		pwField = new JPasswordField();
 		pwField.setBounds(625, 550, 560, 110);
 		pwField.setFont(new Font("Kreon", Font.BOLD, 40));
 		pwField.setOpaque(false);
 		pwField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		/* PW 이미지 패스워드 필드 */
 		pwLabel = new JLabel();
 		pwLabel.setIcon(pwText);
 		pwLabel.setBounds(525, 550, 560, 110);
 		
+		/* PW 이미지 라벨 */
 		pwImgLabel = new JLabel();
 		pwImgLabel.setIcon(pwImg);
 		pwImgLabel.setBounds(375, 580, 110, 50);
 		
-		/* 로그인버튼, 회원가입버튼 */
+		/* 로그인버튼 */
 		loginBtn = new JButton();
 		loginBtn.setIcon(loginImg);
 		loginBtn.setBounds(500, 725, 300, 85);
@@ -149,6 +154,7 @@ public class MainPanel extends JPanel{
 		loginBtn.setContentAreaFilled(false);
 		loginBtn.setFocusPainted(false);
 		
+		/* 회원가입 버튼 */
 		registerBtn = new JButton();
 		registerBtn.setIcon(registerImg);
 		registerBtn.setBounds(850, 725, 300, 85);
@@ -156,6 +162,7 @@ public class MainPanel extends JPanel{
 		registerBtn.setContentAreaFilled(false);
 		registerBtn.setFocusPainted(false);
 		
+		/* 종료 버튼 */
 		exitBtn1 = new JButton();
 		exitBtn1.setIcon(exitImg);
 		exitBtn1.setBounds(1400, 25, 101, 90);
@@ -170,45 +177,53 @@ public class MainPanel extends JPanel{
 		registPanel.setBounds(0, 0, 1600, 900);
 		registPanel.setOpaque(false);
 		
-		/* ID, PW  */
+		/* 회원가입 아이디 텍스트 필드  */
 		idField2 = new JTextField();
 		idField2.setBounds(625, 235, 560, 110);
 		idField2.setFont(new Font("Kreon", Font.BOLD, 40));
 		idField2.setOpaque(false);
 		idField2.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		/* 회원가입 아이디 이미지 텍스트 필드 */
 		idLabel2 = new JLabel();
 		idLabel2.setIcon(idText);
 		idLabel2.setBounds(525, 235, 560, 110);
 		
+		/* 회원가입 아이디 이미지 라벨 */
 		idImgLabel2 = new JLabel();
 		idImgLabel2.setIcon(idImg);
 		idImgLabel2.setBounds(400, 250, 85, 65);
 		
+		/* 회원가입 PW 패스워드 필드 */
 		pwField2 = new JPasswordField();
 		pwField2.setBounds(625, 375, 560, 110);
 		pwField2.setFont(new Font("Kreon", Font.BOLD, 40));
 		pwField2.setOpaque(false);
 		pwField2.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		/* 회원가입 비밀번호 확인 패스워드 필드 */
 		confirmPwField = new JPasswordField();
 		confirmPwField.setBounds(625, 525, 560, 110);
 		confirmPwField.setFont(new Font("Kreon", Font.BOLD, 40));
 		confirmPwField.setOpaque(false);
 		confirmPwField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		/* 회원가입 PW 이미지 패스워드 필드 */
 		pwLabel2 = new JLabel();
 		pwLabel2.setIcon(pwText);
 		pwLabel2.setBounds(525, 375, 560, 110);
 		
+		/* 회원가입 비밀번호 확인 이미지 패스워드 필드 */
 		confirmPwLabel = new JLabel();
 		confirmPwLabel.setIcon(pwText);
 		confirmPwLabel.setBounds(525, 525, 560, 110);
 		
+		/* 회원가입 PW 이미지 라벨 */
 		pwImgLabel2 = new JLabel();
 		pwImgLabel2.setIcon(pwImg);
 		pwImgLabel2.setBounds(375, 400, 110, 50);
 		
+		/* 회원가입 비밀번호 확인 이미지 라벨 */
 		confirmPwImgLabel = new JLabel();
 		confirmPwImgLabel.setIcon(confirmImg);
 		confirmPwImgLabel.setBounds(130, 545, 353, 53);
@@ -236,17 +251,19 @@ public class MainPanel extends JPanel{
 		popUpPanel.setBounds(0, 0, 1600, 900);
 		popUpPanel.setOpaque(false);
 		
-		/* 로그인 팝업 */
+		/* 로그인 성공 팝업 */
 		loginSuccesslabel = new JLabel();
 		loginSuccesslabel.setVisible(false);
 		loginSuccesslabel.setIcon(loginSuccessImg);
 		loginSuccesslabel.setBounds(425, 180, 744, 578);
 		
+		/* 로그인 실패 팝업 */
 		loginFaillabel = new JLabel();
 		loginFaillabel.setVisible(false);
 		loginFaillabel.setIcon(loginFailImg);
 		loginFaillabel.setBounds(425, 180, 744, 578);
 		
+		/* 로그인 성공 시 버튼 */
 		okBtn = new JButton();
 		okBtn.setVisible(false);;
 		okBtn.setIcon(okBtnImg);
@@ -255,6 +272,7 @@ public class MainPanel extends JPanel{
 		okBtn.setContentAreaFilled(false);
 		okBtn.setFocusPainted(false);
 		
+		/* 로그인 실패 시 버튼 */
 		okBtn2 = new JButton();
 		okBtn2.setVisible(false);;
 		okBtn2.setIcon(okBtnImg);
@@ -263,6 +281,7 @@ public class MainPanel extends JPanel{
 		okBtn2.setContentAreaFilled(false);
 		okBtn2.setFocusPainted(false);
 		
+		/* 회원가입 실패 시 버튼 */
 		okBtn3 = new JButton();
 		okBtn3.setVisible(false);;
 		okBtn3.setIcon(okBtnImg);
@@ -271,6 +290,7 @@ public class MainPanel extends JPanel{
 		okBtn3.setContentAreaFilled(false);
 		okBtn3.setFocusPainted(false);
 		
+		/* 회원가입 성공 시 버튼 */
 		registOkBtn = new JButton();
 		registOkBtn.setVisible(false);;
 		registOkBtn.setIcon(okBtnImg);
@@ -285,16 +305,19 @@ public class MainPanel extends JPanel{
 		registSuccesslabel.setIcon(registSuccessImg);
 		registSuccesslabel.setBounds(425, 180, 744, 578);
 		
+		/* 회원가입 실패-비밀번호 미입력 */
 		registFailNoPwdlabel = new JLabel();
 		registFailNoPwdlabel.setVisible(false);
 		registFailNoPwdlabel.setIcon(registFailNoPwdImg);
 		registFailNoPwdlabel.setBounds(425, 180, 744, 578);
 		
+		/* 회원가입 실패-비밀번호 불일치 */
 		registFailWrongPwdlabel = new JLabel();
 		registFailWrongPwdlabel.setVisible(false);
 		registFailWrongPwdlabel.setIcon(registFailWrongPwdImg);
 		registFailWrongPwdlabel.setBounds(425, 180, 744, 578);
 		
+		/* 회원가입 실패-중복된 아이디 */
 		registFailDupIdlabel = new JLabel();
 		registFailDupIdlabel.setVisible(false);
 		registFailDupIdlabel.setIcon(registFailDupIDImg);
@@ -440,7 +463,7 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				/* 로그인 버튼 입력 시 userController로 캐릭터 정보 전달 */
+				/* 텍스트 필드와 패스워드필드 입력값을 String 변수에 저장 */
 				String id = idField.getText();
 				String pw = Arrays.toString(pwField.getPassword());
 				

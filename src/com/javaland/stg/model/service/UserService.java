@@ -38,11 +38,11 @@ public class UserService {
 		
 		result = userDAO.selectPwd(con, userDTO);
 		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
+//		if(result > 0) {
+//			commit(con);
+//		} else {
+//			rollback(con);
+//		}
 		
 		close(con);
 		
@@ -55,11 +55,11 @@ public class UserService {
 		
 		result = userDAO.selectSameId(con, userDTO);
 		
-		if(result > 0) {
-			commit(con);
-		} else {
-			rollback(con);
-		}
+//		if(result > 0) {
+//			commit(con);
+//		} else {
+//			rollback(con);
+//		}
 		
 		close(con);
 		
