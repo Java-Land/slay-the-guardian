@@ -15,6 +15,6 @@
       	  	, B.USER_BL_YN
     	 FROM PLAYER_INFO A
     	 JOIN PLAYER B ON(A.PLAYER_ID = B.USER_ID)
-    	WHERE B.USER_BL_YN = 'Y'
+    	WHERE B.USER_BL_YN = 'N'
 	</entry>
 </properties>
