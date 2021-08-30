@@ -23,16 +23,21 @@ import com.javaland.stg.model.dto.CharacterDTO;
 /* 황성연 담당 패널 */
 public class BattlePanel extends JPanel {
 
+	/* 이미지 및 아이콘 선언 및 생성 */
 	private Image backImg = new ImageIcon("image/BattlePanelBackIMG.jpg").getImage();
 	private Image infoImg = new ImageIcon("image/BattleInfo.png").getImage();
 	private Image stageInfoImg = new ImageIcon("image/battleStageInfo.png").getImage();
 	private Image characterImg = new ImageIcon("image/character.png").getImage();
+	private ImageIcon strikeButtonImg = new ImageIcon("image/StrikeButtonImg.png");
+	private ImageIcon defenseButtonImg = new ImageIcon("image/DefenseButtonImg.png");
+	private ImageIcon escapeButtonImg = new ImageIcon("image/EscapeButtonImg.png");
 
 	/* 적 정보 */
 	private Image enemyImg;
 	private int enemyX;
 	private int enemyY;
 
+	/* 각각의 스테이지 별 몬스터 선언 및 생성 */
 	private Monster slime = new Monster("slime"); // 1-1
 	private Monster jawWorm = new Monster("jawWorm"); // 1-2
 	private Monster gremlin = new Monster("gremlin"); // 1-3
@@ -47,12 +52,10 @@ public class BattlePanel extends JPanel {
 	private Monster theGuardian = new Monster("theGuardian"); // 3-boss
 	private Monster nowEnemy;
 	
+	/* 현재 로그인한 사람의 캐릭터 정보를 담을 객체 선언 */
 	private CharacterDTO character;
 
-	private ImageIcon strikeButtonImg = new ImageIcon("image/StrikeButtonImg.png");
-	private ImageIcon defenseButtonImg = new ImageIcon("image/DefenseButtonImg.png");
-	private ImageIcon escapeButtonImg = new ImageIcon("image/EscapeButtonImg.png");
-
+	/* 모든 패널을 담을 객체 선언 */
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
 	private TownPanel townPanel;
@@ -62,10 +65,12 @@ public class BattlePanel extends JPanel {
 	private AdminPanel adminPanel;
 	private StorePanel storePanel;
 
+	/* 버튼 컴포넌트 선언 */
 	private JButton strikeButton;
 	private JButton defenseButton;
 	private JButton escapeButton;
-
+	
+	/* 라벨 컴포넌트 선언 */
 	private JLabel goldLabel;
 	private JLabel stageLabel;
 	private JLabel characterHpLabel;
@@ -79,6 +84,7 @@ public class BattlePanel extends JPanel {
 	private JLabel monsterSp;
 	private JLabel monsterDp;
 	
+	/* JDBC를 사용하여 DB와 연동할 MVC클래스 선언 및 생성 */
 	private CharacterController characterController = new CharacterController();
 	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
 
@@ -212,7 +218,7 @@ public class BattlePanel extends JPanel {
 		
 		monsterSpawn(slime);
 		
-		super.setVisible(false);
+		battlePanel.setVisible(false);
 		
 //		character = characterController.searchPlayerById("user01");
 //		character.setHp(1000);
@@ -226,100 +232,31 @@ public class BattlePanel extends JPanel {
 //		startBattle(1,4);
 		
 	}
-
-	public void eventStart() {
-		strikeButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				character.attackMonster(nowEnemy);
-				monsterInfoRefresh();
-				if(nowEnemy.getHp() <= 0) {
-					character.victoryBattle(nowEnemy);
-					character.checkLevelUp();
-					if(nowEnemy.getName().equals("slime")) {
-						dungeonPanel.setDungeon(2);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("jawWorm")) {
-						dungeonPanel.setDungeon(3);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("gremlin")) { 
-						dungeonPanel.setDungeon(4);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("champion")) { 
-						character.setStage1ClearYN("Y");
-						dungeonPanel.setDungeon(1);
-						battlePanel.setVisible(false);
-						townPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("parasite")) { 
-						dungeonPanel.setDungeon(2);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("snecko")) { 
-						dungeonPanel.setDungeon(3);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("book")) { 
-						dungeonPanel.setDungeon(4);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("timeEater")) { 
-						dungeonPanel.setDungeon(1);
-						character.setStage2ClearYN("Y");
-						battlePanel.setVisible(false);
-						townPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("transienter")) { 
-						dungeonPanel.setDungeon(2);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("writhingMass")) { 
-						dungeonPanel.setDungeon(3);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("nemesis")) { 
-						dungeonPanel.setDungeon(4);
-						battlePanel.setVisible(false);
-						dungeonPanel.setVisible(true);
-					} else if (nowEnemy.getName().equals("theGuardian")) { 
-						dungeonPanel.setDungeon(1);
-						battlePanel.setVisible(false);
-						townPanel.setVisible(true);
-					}
-					characterUpdateController.updatePlayer(character);
-				} else {
-					monsterTurnStart(1);
-				}
-			}
-		});
-
-		defenseButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				monsterTurnStart(2);
-			}
-		});
-
-		escapeButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int random = (int)(Math.random() * 2) + 1;
-				System.out.println(random);
-				if(random == 1) {
-					JOptionPane.showMessageDialog(null, "도망 성공");
-					battlePanel.setVisible(false);
-					townPanel.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(null, "도망 실패");
-				}
-			}
-		});
+	
+	/* 현재 캐릭터 정보를 GUI에 표출하여 주는 메소드 */
+	public void characterInforefresh() {
+		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
+		goldLabel.setText(character.getGold() + "");
+		characterSp.setText("Character SP : " + character.getSp());
+		characterDp.setText("Character DP : " + character.getDp());
+		characterLevel.setText("Character Lv : " + character.getLevel());
+		characterExp.setText("Character Exp : " + character.getLevel() * 100 + "/" + character.getExp());
+	}
+	
+	/* 로그인 하였을 경우 로그인한 캐릭터에 정보를 가지고오는 메소드 */
+	public void setCharacter(CharacterDTO character) {
+		this.character = character;
+		characterInforefresh();
 	}
 
+	/* 현재 몬스터 정보를 GUI에 표출하여 주는 메소드 */
+	public void monsterInfoRefresh() {
+		enemyHpLabel.setText(nowEnemy.getHp() + "/" + nowEnemy.getMaxHp());
+		monsterSp.setText(nowEnemy.getName() + " SP : " + nowEnemy.getSp());
+		monsterDp.setText(nowEnemy.getName() + " DP : " + nowEnemy.getDp());
+	}
+	
+	/* 전투 할 몬스터의 정보를 세팅하는 메소드 */
 	public void monsterSpawn(Monster monster) {
 		battlePanel.enemyImg = monster.getImg();
 		battlePanel.enemyX = monster.getImgX();
@@ -332,57 +269,7 @@ public class BattlePanel extends JPanel {
 		nowEnemy = monster;
 	}
 	
-	public void monsterInfoRefresh() {
-		enemyHpLabel.setText(nowEnemy.getHp() + "/" + nowEnemy.getMaxHp());
-		monsterSp.setText(nowEnemy.getName() + " SP : " + nowEnemy.getSp());
-		monsterDp.setText(nowEnemy.getName() + " DP : " + nowEnemy.getDp());
-	}
-
-	public void characterInforefresh() {
-		characterHpLabel.setText(character.getHp() + "/" + character.getMaxHp());
-		goldLabel.setText(character.getGold() + "");
-		characterSp.setText("Character SP : " + character.getSp());
-		characterDp.setText("Character DP : " + character.getDp());
-		characterLevel.setText("Character Lv : " + character.getLevel());
-		characterExp.setText("Character Exp : " + character.getLevel() * 100 + "/" + character.getExp());
-	}
-
-	public void monsterTurnStart(int tactics) {
-		strikeButton.setEnabled(false);
-		defenseButton.setEnabled(false);
-		escapeButton.setEnabled(false);
-		turnInfo.setText("몬스터 턴===>");
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if(tactics == 1) {
-					nowEnemy.attackCharacter(character);
-				}
-				turnInfo.setText("<===캐릭터 턴");
-				strikeButton.setEnabled(true);
-				defenseButton.setEnabled(true);
-				escapeButton.setEnabled(true);
-				characterInforefresh();
-				if(character.getHp() <= 0) {
-					character.setLiveYN("N");
-					characterUpdateController.updatePlayer(character);
-//					새로운 캐릭터 생성하는 컨트롤러
-					characterController.characterInsertById(character.getId());
-					character = characterController.searchPlayerById(character.getId());
-					townPanel.setCharacter(character);
-					battlePanel.setVisible(false);
-					townPanel.setVisible(true);
-				}
-			}
-		}).start();
-		
-	}
-	
+	/* 전투를 시작할 몬스터를 선택하는 메소드 */
 	public void startBattle(int stageNo, int dungeonNo) {
 		switch(stageNo) {
 		case 1:
@@ -440,12 +327,190 @@ public class BattlePanel extends JPanel {
 		monsterInfoRefresh();
 		characterInforefresh();
 	}
-
-	public void setCharacter(CharacterDTO character) {
-		this.character = character;
-		characterInforefresh();
+	
+	/* 몬스터의 공격 턴이 시작 되는 메소드 */
+	public void monsterTurnStart(int tactics) {
+		
+		/* 캐릭터가 클릭 할 수 있는 모든 버튼을 잠그는 메소드 */
+		strikeButton.setEnabled(false);
+		defenseButton.setEnabled(false);
+		escapeButton.setEnabled(false);
+		
+		/* 몬스터 턴 시작을 알리는 라벨을 수정하는 메소드 */
+		turnInfo.setText("몬스터 턴===>");
+		
+		/* 2초 동안 몬스터에 턴이 진행되도록 하는 스레드 메소드 */
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				/* 캐릭터가 공격 또는 도망 버튼을 눌렀을 경우 몬스터가 캐릭터를 공격하는 메소드 */
+				/* 만약 캐릭터가 방어 버튼을 눌렀다면 몬스터에 공격이 방어 되어 몬스터가 캐릭터를 공격하지 못함 */
+				if(tactics == 1) {
+					nowEnemy.attackCharacter(character);
+				}
+				
+				/* 캐릭터 턴 시작을 알리는 라벨을 수정하는 메소드 */
+				turnInfo.setText("<===캐릭터 턴");
+				
+				/* 다시 캐릭터가 클릭 할 수 있는 모든 버튼의 잠금을 풀어주는 메소드 */
+				strikeButton.setEnabled(true);
+				defenseButton.setEnabled(true);
+				escapeButton.setEnabled(true);
+				
+				/* 몬스터에 공격으로 인해 변화된 캐릭터에 정보를 뿌려주는 메소드 */
+				characterInforefresh();
+				
+				/* 만약 몬스터에 공격으로 캐릭터에 HP가 0이하로 떨어지면 캐릭터에 죽음을 판별하는 조건 문 */
+				if(character.getHp() <= 0) {
+					
+					/* 캐릭터에 죽음 정보를 변경하는 메소드 */
+					character.setLiveYN("N");
+					
+					/* 변경된 캐릭터 정보를 업데이트 하는 메소드 */
+					characterUpdateController.updatePlayer(character);
+					
+					/* 현재 계정에 아이디로 새로운 캐릭터를 생성하는 메소드 */
+					characterController.characterInsertById(character.getId());
+					
+					/* 위에서 인서트 한 캐릭터 정보를 가지고 오는 메소드 */
+					character = characterController.searchPlayerById(character.getId());
+					
+					/* 새로운 캐릭터 정보를 타운 패널에 전달하는 메소드 */
+					townPanel.setCharacter(character);
+					
+					/* 타운패널로 패널을 변경하는 메소드 */
+					battlePanel.setVisible(false);
+					townPanel.setVisible(true);
+				}
+			}
+		}).start();
+		
 	}
 	
+	/* 모든 이벤트가 구현되는 메소드 */
+	public void eventStart() {
+		
+		/* 공격 버튼 클릭 이벤트 */
+		strikeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				character.attackMonster(nowEnemy);
+				monsterInfoRefresh();
+				
+				/* 캐릭터에 공격으로 인하여 몬스터에 체력이 0이하로 떨어질 경우 발생 */
+				if(nowEnemy.getHp() <= 0) {
+					
+					/* 캐릭터가 전투를 승리하여 몬스터가 드랍한 경험치, 및 골드를 획득 */
+					character.victoryBattle(nowEnemy);
+					
+					/* 캐릭터가 현재 경험치가 레벨업 할 경험치인지 확인하여 맞을 경우 레벨업을 하는 메소드 */
+					character.checkLevelUp();
+					
+					/* 현재 전투한 몬스터에 따라 다음 전투를 설정하여 패널을 변경하는 조건 문 */
+					if(nowEnemy.getName().equals("slime")) {
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("jawWorm")) {
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("gremlin")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("champion")) { 
+						character.setStage1ClearYN("Y");
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("parasite")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("snecko")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("book")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("timeEater")) { 
+						dungeonPanel.setDungeon(1);
+						character.setStage2ClearYN("Y");
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("transienter")) { 
+						dungeonPanel.setDungeon(2);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("writhingMass")) { 
+						dungeonPanel.setDungeon(3);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("nemesis")) { 
+						dungeonPanel.setDungeon(4);
+						battlePanel.setVisible(false);
+						dungeonPanel.setVisible(true);
+					} else if (nowEnemy.getName().equals("theGuardian")) { 
+						dungeonPanel.setDungeon(1);
+						battlePanel.setVisible(false);
+						townPanel.setVisible(true);
+					}
+					
+					/* 전투 승리로 인하여 변경된 캐릭터 정보를 업데이트 하는 메소드 */
+					characterUpdateController.updatePlayer(character);
+				} else {
+					
+					/* 몬스터 공격턴 시작 메소드 */
+					monsterTurnStart(1);
+				}
+			}
+		});
+		
+		/* 방어 버튼 클릭 메소드 */
+		defenseButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				/* 몬스터 공격 턴 시작 메소드 */
+				monsterTurnStart(2);
+			}
+		});
+		
+		/* 도망 버튼 클릭 메소드 */
+		escapeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				/* 1 또는 2 난수를 발생하여 random 변수에 저장 */
+				int random = (int)(Math.random() * 2) + 1;
+				
+				if(random == 1) {
+					/* 랜덤 변수가 1일 경우 도망에 성공하여 타운 패널로 이동 */
+					JOptionPane.showMessageDialog(null, "도망 성공");
+					battlePanel.setVisible(false);
+					townPanel.setVisible(true);
+				} else {
+					/* 랜던 변수가 2일 경우 도망에 실패라는 메세지 출력 */
+					JOptionPane.showMessageDialog(null, "도망 실패");
+					monsterTurnStart(1);
+				}
+				
+			}
+		});
+	}
+
+	/* 현재 패널 클래스에서 다른 패널에 있는 메소드를 사용하기 위한 패널 초기화 메소드 */
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, StagePanel stagePanel,
 			DungeonPanel dungeonPanel, MainPanel mainPanel, AdminPanel adminPanel, StorePanel storePanel) {
 		this.scriptPanel = scriptPanel;
@@ -457,6 +522,7 @@ public class BattlePanel extends JPanel {
 		this.storePanel = storePanel;
 	}
 
+	/* 패널에 이미지를 그리기 위한 JPanel에 있는 메소드를 오버라이드 하여 사용 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -469,7 +535,8 @@ public class BattlePanel extends JPanel {
 		g.drawImage(stageInfoImg, 1140, 20, this);
 		g.drawImage(characterImg, 250, 500, this);
 	}
-
+	
+	/* Panel GUI 확인을 위해 만든 메인 메소드 */
 	public static void main(String[] args) {
 
 		JFrame mf = new JFrame("Test");
