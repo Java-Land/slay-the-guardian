@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key="selectUserBlackList">
+       SELECT
+			  A.PLAYER_ID
+      		, A.PLAY_TIME
+      	 	, A.PLAYER_LEVEL
+      	    , A.PLAYER_EXP
+      	    , A.PLAYER_GOLD
+            , A.PLAYER_MAX_HP
+            , A.PLAYER_SP
+       		, A.PLAYER_DP
+      	  	, B.USER_BL_YN
+    	 FROM PLAYER_INFO A
+    	 JOIN PLAYER B ON(A.PLAYER_ID = B.USER_ID)
+    	WHERE B.USER_BL_YN = 'Y'
+	</entry>
+</properties>
