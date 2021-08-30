@@ -23,16 +23,21 @@ import com.javaland.stg.model.dto.CharacterDTO;
 /* 황성연 담당 패널 */
 public class BattlePanel extends JPanel {
 
+	/* 이미지 및 아이콘 선언 및 생성 */
 	private Image backImg = new ImageIcon("image/BattlePanelBackIMG.jpg").getImage();
 	private Image infoImg = new ImageIcon("image/BattleInfo.png").getImage();
 	private Image stageInfoImg = new ImageIcon("image/battleStageInfo.png").getImage();
 	private Image characterImg = new ImageIcon("image/character.png").getImage();
+	private ImageIcon strikeButtonImg = new ImageIcon("image/StrikeButtonImg.png");
+	private ImageIcon defenseButtonImg = new ImageIcon("image/DefenseButtonImg.png");
+	private ImageIcon escapeButtonImg = new ImageIcon("image/EscapeButtonImg.png");
 
 	/* 적 정보 */
 	private Image enemyImg;
 	private int enemyX;
 	private int enemyY;
 
+	/* 각각의 스테이지 별 몬스터 선언 및 생성 */
 	private Monster slime = new Monster("slime"); // 1-1
 	private Monster jawWorm = new Monster("jawWorm"); // 1-2
 	private Monster gremlin = new Monster("gremlin"); // 1-3
@@ -47,12 +52,10 @@ public class BattlePanel extends JPanel {
 	private Monster theGuardian = new Monster("theGuardian"); // 3-boss
 	private Monster nowEnemy;
 	
+	/* 현재 로그인한 사람의 캐릭터 정보를 담을 객체 선언 */
 	private CharacterDTO character;
 
-	private ImageIcon strikeButtonImg = new ImageIcon("image/StrikeButtonImg.png");
-	private ImageIcon defenseButtonImg = new ImageIcon("image/DefenseButtonImg.png");
-	private ImageIcon escapeButtonImg = new ImageIcon("image/EscapeButtonImg.png");
-
+	/* 모든 패널을 담을 객체 선언 */
 	private MainPanel mainPanel;
 	private ScriptPanel scriptPanel;
 	private TownPanel townPanel;
@@ -62,10 +65,12 @@ public class BattlePanel extends JPanel {
 	private AdminPanel adminPanel;
 	private StorePanel storePanel;
 
+	/* 버튼 컴포넌트 선언 */
 	private JButton strikeButton;
 	private JButton defenseButton;
 	private JButton escapeButton;
-
+	
+	/* 라벨 컴포넌트 선언 */
 	private JLabel goldLabel;
 	private JLabel stageLabel;
 	private JLabel characterHpLabel;
@@ -79,6 +84,7 @@ public class BattlePanel extends JPanel {
 	private JLabel monsterSp;
 	private JLabel monsterDp;
 	
+	/* JDBC를 사용하여 DB와 연동할 MVC클래스 선언 및 생성 */
 	private CharacterController characterController = new CharacterController();
 	private CharacterUpdateController characterUpdateController = new CharacterUpdateController();
 

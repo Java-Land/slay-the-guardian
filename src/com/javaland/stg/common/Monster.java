@@ -150,6 +150,7 @@ public class Monster {
 		}
 	}
 	
+	/* 몬스터가 캐릭터를 공격하는 메소드 */
 	public void attackCharacter(CharacterDTO character) {
 		if(this.sp - character.getDp() > 0) {
 			character.setHp(character.getHp() - (this.sp - character.getDp()));
@@ -158,6 +159,7 @@ public class Monster {
 		}
 	}
 	
+	/* 몬스터 리스폰 하는 메소드 */
 	public void reSpawn() {
 		this.hp = this.maxHp;
 	}
