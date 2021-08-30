@@ -199,6 +199,7 @@ public class DungeonPanel extends JPanel {
 			resultNum = 3;
 			break;
 		}
+		dungeonPanel.setDungeon(1);
 	}
 
 	public void eventStart() {
@@ -208,9 +209,8 @@ public class DungeonPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				battlePanel.startBattle(mystageNum, 1);
 				dungeonPanel.setVisible(false);
-				townPanel.setVisible(true);
+				stagePanel.setVisible(true);
 
 			}
 		});
@@ -302,6 +302,35 @@ public class DungeonPanel extends JPanel {
 				battlePanel.setVisible(true);
 			}
 		});
+	}
+	
+	public void setDungeon(int number) {
+		switch(number) {
+		case 1:
+			monster1Btn.setEnabled(true);
+			monster2Btn.setEnabled(false);
+			monster3Btn.setEnabled(false);
+			bossMonster1Btn.setEnabled(false);
+			break;
+		case 2:
+			monster1Btn.setEnabled(false);
+			monster2Btn.setEnabled(true);
+			monster3Btn.setEnabled(false);
+			bossMonster1Btn.setEnabled(false);
+			break;
+		case 3:
+			monster1Btn.setEnabled(false);
+			monster2Btn.setEnabled(false);
+			monster3Btn.setEnabled(true);
+			bossMonster1Btn.setEnabled(false);
+			break;
+		case 4:
+			monster1Btn.setEnabled(false);
+			monster2Btn.setEnabled(false);
+			monster3Btn.setEnabled(false);
+			bossMonster1Btn.setEnabled(true);
+			break;
+		}
 	}
 
 	public void panelInit(ScriptPanel scriptPanel, TownPanel townPanel, StagePanel stagePanel, MainPanel mainPanel,
