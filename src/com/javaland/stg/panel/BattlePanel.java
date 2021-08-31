@@ -219,18 +219,6 @@ public class BattlePanel extends JPanel {
 		monsterSpawn(slime);
 		
 		battlePanel.setVisible(false);
-		
-//		character = characterController.searchPlayerById("user01");
-//		character.setHp(1000);
-//		character.setMaxHp(1000);
-//		character.setSp(3);
-//		character.setDp(0);
-//		character.setLevel(1);
-//		character.setGold(200);
-//		character.setExp(0);
-//		characterInforefresh();
-//		startBattle(1,4);
-		
 	}
 	
 	/* 현재 캐릭터 정보를 GUI에 표출하여 주는 메소드 */
@@ -344,7 +332,7 @@ public class BattlePanel extends JPanel {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -370,7 +358,7 @@ public class BattlePanel extends JPanel {
 				if(character.getHp() <= 0) {
 					
 					/* 캐릭터에 죽음 정보를 변경하는 메소드 */
-					character.setLiveYN("N");
+					character.setLiveYN("Y");
 					
 					/* 변경된 캐릭터 정보를 업데이트 하는 메소드 */
 					characterUpdateController.updatePlayer(character);
@@ -383,6 +371,7 @@ public class BattlePanel extends JPanel {
 					
 					/* 새로운 캐릭터 정보를 타운 패널에 전달하는 메소드 */
 					townPanel.setCharacter(character);
+					stagePanel.setCharacter(character);
 					
 					/* 타운패널로 패널을 변경하는 메소드 */
 					battlePanel.setVisible(false);
