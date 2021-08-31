@@ -17,4 +17,25 @@
     	 JOIN PLAYER B ON(A.PLAYER_ID = B.USER_ID)
     	WHERE B.USER_BL_YN = 'Y'
 	</entry>
+	
+	<entry key="updateCharacterinfo">
+	UPDATE
+		   PLAYER_INFO A
+       SET A.PLAY_TIME = ?
+     	 , A.PLAYER_LEVEL = ?
+     	 , A.PLAYER_EXP = ?
+     	 , A.PLAYER_GOLD = ?
+     	 , A.PLAYER_HP = ?
+     	 , A.PLAYER_SP = ?
+     	 , A.PLAYER_DP = ?
+	 WHERE PLAYER_ID = ?;
+	</entry>
+	
+	<entry key="updateUserinfo">
+		UPDATE
+	    	   PLAYER B
+		   SET USER_BL_YN = ?
+		 WHERE USER_ID = ?;
+	</entry>
+	
 </properties>

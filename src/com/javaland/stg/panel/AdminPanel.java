@@ -6,6 +6,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,7 +25,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import com.javaland.stg.controller.UserListController;
+import com.javaland.stg.model.dao.UserListDAO;
+import com.javaland.stg.model.dto.CharacterDTO;
+import com.javaland.stg.model.dto.UserDTO;
+import com.javaland.stg.model.dto.UserListDTO;
+
 /* 김한솔 담당 패널 */
+
 public class AdminPanel extends JPanel{
 
 	Image backImg = new ImageIcon("image/MainPanelBackIMG.png").getImage();
@@ -37,6 +48,7 @@ public class AdminPanel extends JPanel{
 	private AdminPanel adminPanel;
 	private StorePanel storePanel;
 
+	private UserListController userlistController = new UserListController();
 	private JLabel adminTitlelb;
 	private JScrollPane scrolledTable;
 	private JButton adminExitBtn;
@@ -44,7 +56,7 @@ public class AdminPanel extends JPanel{
 	private JLabel resultLb;
 	private DefaultTableModel model;
 	private JTable table;
-
+	
 	public AdminPanel() {
 		adminPanel = this;
 		this.setBounds(0, 0, 1600, 900);
@@ -60,17 +72,15 @@ public class AdminPanel extends JPanel{
 		String title[]= {"아이디", "플레이 시간", "레벨", "현재경험치", "소지골드", "체력","공격력","방어력","블랙리스트 여부" };
 		Object data[][] = {
 				{"id01","00:00:00","15","12345","123","100","70","20","N"},
-				{"id02","00:00:00","17","12345","123","100","70","20","N"},
-				{"id03","00:00:00","18","12345","123","100","70","20","N"},
-				{"id04","00:00:00","19","12345","123","100","70","20","N"}
 		};
-
 		model = new DefaultTableModel(data,title);
+
+		
 		table = new JTable(model);
 		scrolledTable = new JScrollPane(table);
 		scrolledTable.setBounds(135, 160, 1300, 530);
 		scrolledTable.setBorder(BorderFactory.createLineBorder(Color.gray, 4, true));
-
+	
 		/*테이블 셀 가운데 정렬*/
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -115,9 +125,12 @@ public class AdminPanel extends JPanel{
 		this.add(adminExitBtn);
 		this.add(saveBtn);
 		this.add(resultLb);
+		
+//		adminPanel.setVisible(false);
 	}
  
 	public void eventStart() {
+
 		adminExitBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -131,6 +144,7 @@ public class AdminPanel extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				System.out.println(model.getValueAt(0,0));
 				resultLb.setText("저장이 완료 되었습니다.");
 			}
@@ -160,6 +174,7 @@ public class AdminPanel extends JPanel{
 
 	} 
 
+	
    public static void main(String[] args) {
 
 		JFrame mf = new JFrame("Test"); 

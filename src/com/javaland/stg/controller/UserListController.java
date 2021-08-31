@@ -1,6 +1,5 @@
 package com.javaland.stg.controller;
 
-import java.sql.Connection;
 import java.util.List;
 
 import com.javaland.stg.model.dto.UserListDTO;
@@ -16,4 +15,7 @@ public class UserListController {
 		return userList;
 	}
 	
+	
+	
+
 }
