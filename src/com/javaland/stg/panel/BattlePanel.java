@@ -32,6 +32,7 @@ public class BattlePanel extends JPanel {
 	private ImageIcon defenseButtonImg = new ImageIcon("image/DefenseButtonImg.png");
 	private ImageIcon escapeButtonImg = new ImageIcon("image/EscapeButtonImg.png");
 
+	/* 수정 */
 	/* 적 정보 */
 	private Image enemyImg;
 	private int enemyX;
